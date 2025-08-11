@@ -8,3 +8,25 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Cache and temporary files
+.claude/
+.transformers-cache/
+.php-cs-fixer.cache
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Docker volumes (keep in git, but ignore if local overrides exist)
+# docker-compose.override.yml
+
+###> friendsofphp/php-cs-fixer ###
+/.php-cs-fixer.cache
+###< friendsofphp/php-cs-fixer ###

@@ -7,17 +7,20 @@
         "php": ">=8.2",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "codewithkyrian/transformers": "^0.6.1",
+        "hkulekci/qdrant": "^0.5.8",
+        "nyholm/psr7": "^1.8.2",
         "symfony/console": "7.3.*",
         "symfony/dotenv": "7.3.*",
-        "symfony/flex": "^2",
+        "symfony/flex": "^2.8.2",
         "symfony/framework-bundle": "7.3.*",
+        "symfony/http-client": "^7.3.3",
         "symfony/runtime": "7.3.*",
         "symfony/yaml": "7.3.*"
     },
-    "require-dev": {
-    },
     "config": {
         "allow-plugins": {
+            "codewithkyrian/platform-package-installer": true,
             "php-http/discovery": true,
             "symfony/flex": true,
             "symfony/runtime": true
@@ -55,7 +58,17 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
-        ]
+        ],
+        "check": [
+            "@phpstan",
+            "@cs-check"
+        ],
+        "fix": [
+            "@cs-fix"
+        ],
+        "phpstan": "phpstan analyse src --level=8 --no-progress",
+        "cs-check": "php-cs-fixer fix --dry-run --diff",
+        "cs-fix": "php-cs-fixer fix"
     },
     "conflict": {
         "symfony/symfony": "*"
@@ -65,5 +78,10 @@
             "allow-contrib": false,
             "require": "7.3.*"
         }
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^1.12.28",
+        "friendsofphp/php-cs-fixer": "^3.87.1",
+        "symfony/maker-bundle": "^1.64"
     }
 }

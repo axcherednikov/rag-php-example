@@ -1,0 +1,1502 @@
+[
+  {
+    "id": 1,
+    "name": "MacBook Pro M3 14\"",
+    "category": "laptops",
+    "brand": "Apple",
+    "price": 199999,
+    "description": "Профессиональный ноутбук с чипом M3, 14-дюймовый Liquid Retina XDR дисплей, 16GB RAM, 512GB SSD",
+    "specifications": {
+      "processor": "Apple M3",
+      "ram": "16GB",
+      "storage": "512GB SSD",
+      "display": "14\" Liquid Retina XDR",
+      "graphics": "Apple M3 GPU"
+    }
+  },
+  {
+    "id": 2,
+    "name": "Dell XPS 13",
+    "category": "laptops",
+    "brand": "Dell",
+    "price": 89999,
+    "description": "Ультрабук с процессором Intel Core i7, 13.3\" InfinityEdge дисплей, 16GB RAM, 512GB SSD",
+    "specifications": {
+      "processor": "Intel Core i7-1365U",
+      "ram": "16GB",
+      "storage": "512GB SSD",
+      "display": "13.3\" FHD+",
+      "graphics": "Intel Iris Xe"
+    }
+  },
+  {
+    "id": 3,
+    "name": "ASUS ROG Strix RTX 4070",
+    "category": "graphics_cards",
+    "brand": "ASUS",
+    "price": 59999,
+    "description": "Игровая видеокарта с архитектурой Ada Lovelace, 12GB GDDR6X, Ray Tracing, DLSS 3.0",
+    "specifications": {
+      "gpu": "NVIDIA GeForce RTX 4070",
+      "memory": "12GB GDDR6X",
+      "memory_bus": "192-bit",
+      "cuda_cores": "5888",
+      "base_clock": "1920 MHz"
+    }
+  },
+  {
+    "id": 4,
+    "name": "AMD Ryzen 9 7950X",
+    "category": "processors",
+    "brand": "AMD",
+    "price": 54999,
+    "description": "16-ядерный процессор с архитектурой Zen 4, частота до 5.7 GHz, поддержка DDR5 и PCIe 5.0",
+    "specifications": {
+      "cores": "16",
+      "threads": "32",
+      "base_frequency": "4.5 GHz",
+      "max_frequency": "5.7 GHz",
+      "socket": "AM5"
+    }
+  },
+  {
+    "id": 5,
+    "name": "Intel Core i9-14900K",
+    "category": "processors",
+    "brand": "Intel",
+    "price": 49999,
+    "description": "24-ядерный процессор 14-го поколения, частота до 6.0 GHz, поддержка DDR5",
+    "specifications": {
+      "cores": "24",
+      "threads": "32",
+      "base_frequency": "3.2 GHz",
+      "max_frequency": "6.0 GHz",
+      "socket": "LGA1700"
+    }
+  },
+  {
+    "id": 6,
+    "name": "Kingston Fury Beast 32GB DDR5",
+    "category": "memory",
+    "brand": "Kingston",
+    "price": 14999,
+    "description": "Комплект оперативной памяти DDR5-5600, 32GB (2x16GB), RGB подсветка",
+    "specifications": {
+      "capacity": "32GB",
+      "type": "DDR5",
+      "frequency": "5600 MHz",
+      "latency": "CL36",
+      "modules": "2x16GB"
+    }
+  },
+  {
+    "id": 7,
+    "name": "Samsung 980 PRO 2TB",
+    "category": "storage",
+    "brand": "Samsung",
+    "price": 19999,
+    "description": "NVMe SSD M.2 с интерфейсом PCIe 4.0, скорость чтения до 7000 MB/s",
+    "specifications": {
+      "capacity": "2TB",
+      "interface": "PCIe 4.0 NVMe",
+      "form_factor": "M.2 2280",
+      "read_speed": "7000 MB/s",
+      "write_speed": "6900 MB/s"
+    }
+  },
+  {
+    "id": 8,
+    "name": "ASUS ROG X670E-E Gaming WiFi",
+    "category": "motherboards",
+    "brand": "ASUS",
+    "price": 34999,
+    "description": "Материнская плата с чипсетом X670E, поддержка AMD Ryzen 7000, WiFi 6E, PCIe 5.0",
+    "specifications": {
+      "chipset": "AMD X670E",
+      "socket": "AM5",
+      "memory_support": "DDR5-5600+",
+      "pcie_slots": "4x PCIe 5.0",
+      "wifi": "WiFi 6E"
+    }
+  },
+  {
+    "id": 9,
+    "name": "Corsair RM850x",
+    "category": "power_supplies",
+    "brand": "Corsair",
+    "price": 12999,
+    "description": "Модульный блок питания 850W, сертификат 80 PLUS Gold, полностью модульные кабели",
+    "specifications": {
+      "power": "850W",
+      "efficiency": "80 PLUS Gold",
+      "modular": "Full modular",
+      "fan": "135mm",
+      "warranty": "10 years"
+    }
+  },
+  {
+    "id": 10,
+    "name": "Logitech MX Master 3S",
+    "category": "peripherals",
+    "brand": "Logitech",
+    "price": 7999,
+    "description": "Беспроводная мышь для профессионалов, сенсор 8000 DPI, быстрая прокрутка, USB-C зарядка",
+    "specifications": {
+      "sensor": "Darkfield 8000 DPI",
+      "connectivity": "Bluetooth/USB receiver",
+      "battery": "70 days",
+      "buttons": "7 programmable",
+      "weight": "141g"
+    }
+  },
+  {
+    "id": 11,
+    "name": "Keychron K8 Wireless",
+    "category": "peripherals",
+    "brand": "Keychron",
+    "price": 9999,
+    "description": "Беспроводная механическая клавиатура 87 клавиш, переключатели Gateron Red, RGB подсветка",
+    "specifications": {
+      "layout": "87 keys TKL",
+      "switches": "Gateron Red",
+      "connectivity": "Bluetooth/USB-C",
+      "battery": "4000mAh",
+      "backlight": "RGB"
+    }
+  },
+  {
+    "id": 12,
+    "name": "LG 27GP950-B",
+    "category": "monitors",
+    "brand": "LG",
+    "price": 44999,
+    "description": "4K игровой монитор 27\", 144Hz, Nano IPS, HDR600, HDMI 2.1, DisplayPort 1.4",
+    "specifications": {
+      "size": "27\"",
+      "resolution": "3840x2160",
+      "refresh_rate": "144Hz",
+      "panel": "Nano IPS",
+      "hdr": "HDR600"
+    }
+  },
+  {
+    "id": 13,
+    "name": "NZXT Kraken Z63",
+    "category": "cooling",
+    "brand": "NZXT",
+    "price": 24999,
+    "description": "Жидкостное охлаждение с 2.36\" LCD дисплеем, 280mm радиатор, RGB подсветка",
+    "specifications": {
+      "radiator": "280mm",
+      "fans": "2x 140mm",
+      "pump": "Asetek 7th gen",
+      "display": "2.36\" LCD",
+      "compatibility": "Intel/AMD"
+    }
+  },
+  {
+    "id": 14,
+    "name": "Fractal Design Define 7",
+    "category": "cases",
+    "brand": "Fractal Design",
+    "price": 17999,
+    "description": "Полноразмерный корпус с шумоизоляцией, поддержка E-ATX, 9 слотов расширения",
+    "specifications": {
+      "form_factor": "E-ATX/ATX/mATX/ITX",
+      "max_gpu_length": "440mm",
+      "drive_bays": "6x 3.5\"/2.5\"",
+      "fans": "3x 140mm included",
+      "psu_length": "300mm"
+    }
+  },
+  {
+    "id": 15,
+    "name": "SteelSeries Arctis 7P",
+    "category": "peripherals",
+    "brand": "SteelSeries",
+    "price": 14999,
+    "description": "Беспроводная игровая гарнитура, совместимость с PS5/PC, время работы до 24 часов",
+    "specifications": {
+      "connectivity": "2.4GHz wireless",
+      "battery": "24 hours",
+      "microphone": "ClearCast bidirectional",
+      "drivers": "40mm",
+      "compatibility": "PS5/PC/Mobile"
+    }
+  },
+  {
+    "id": 16,
+    "name": "Apple Studio Display",
+    "category": "monitors",
+    "brand": "Apple",
+    "price": 179999,
+    "description": "27-дюймовый 5K Retina дисплей, True Tone, встроенная камера 12MP Ultra Wide",
+    "specifications": {
+      "size": "27\"",
+      "resolution": "5120x2880",
+      "brightness": "600 nits",
+      "color_gamut": "P3 wide color",
+      "camera": "12MP Ultra Wide"
+    }
+  },
+  {
+    "id": 17,
+    "name": "MSI GeForce RTX 4080 Gaming X Trio",
+    "category": "graphics_cards",
+    "brand": "MSI",
+    "price": 119999,
+    "description": "Мощная игровая видеокарта с 16GB GDDR6X, улучшенное охлаждение Tri Frozr 3",
+    "specifications": {
+      "gpu": "NVIDIA GeForce RTX 4080",
+      "memory": "16GB GDDR6X",
+      "memory_bus": "256-bit",
+      "cuda_cores": "9728",
+      "base_clock": "2205 MHz"
+    }
+  },
+  {
+    "id": 18,
+    "name": "AMD Radeon RX 7800 XT",
+    "category": "graphics_cards",
+    "brand": "AMD",
+    "price": 54999,
+    "description": "Игровая видеокарта с архитектурой RDNA 3, 16GB GDDR6, Ray Tracing, FSR 3.0",
+    "specifications": {
+      "gpu": "AMD Radeon RX 7800 XT",
+      "memory": "16GB GDDR6",
+      "memory_bus": "256-bit",
+      "stream_processors": "3840",
+      "game_clock": "2124 MHz"
+    }
+  },
+  {
+    "id": 19,
+    "name": "Corsair Dominator Platinum RGB 64GB",
+    "category": "memory",
+    "brand": "Corsair",
+    "price": 39999,
+    "description": "Премиальная оперативная память DDR5-5600, 64GB (4x16GB), с RGB подсветкой",
+    "specifications": {
+      "capacity": "64GB",
+      "type": "DDR5",
+      "frequency": "5600 MHz",
+      "latency": "CL36",
+      "modules": "4x16GB"
+    }
+  },
+  {
+    "id": 20,
+    "name": "WD Black SN850X 4TB",
+    "category": "storage",
+    "brand": "Western Digital",
+    "price": 42999,
+    "description": "Игровой NVMe SSD с PCIe 4.0, скорость чтения до 7300 MB/s, оптимизирован для игр",
+    "specifications": {
+      "capacity": "4TB",
+      "interface": "PCIe 4.0 NVMe",
+      "form_factor": "M.2 2280",
+      "read_speed": "7300 MB/s",
+      "write_speed": "6600 MB/s"
+    }
+  },
+  {
+    "id": 21,
+    "name": "GIGABYTE Z790 AORUS Master",
+    "category": "motherboards",
+    "brand": "GIGABYTE",
+    "price": 42999,
+    "description": "Премиальная материнская плата с чипсетом Z790, поддержка Intel 13-14 поколения, WiFi 7",
+    "specifications": {
+      "chipset": "Intel Z790",
+      "socket": "LGA1700",
+      "memory_support": "DDR5-7600+",
+      "pcie_slots": "4x PCIe 5.0",
+      "wifi": "WiFi 7"
+    }
+  },
+  {
+    "id": 22,
+    "name": "Seasonic Focus PX-1000",
+    "category": "power_supplies",
+    "brand": "Seasonic",
+    "price": 19999,
+    "description": "Полностью модульный БП 1000W, сертификат 80 PLUS Platinum, 12-летняя гарантия",
+    "specifications": {
+      "power": "1000W",
+      "efficiency": "80 PLUS Platinum",
+      "modular": "Full modular",
+      "fan": "120mm",
+      "warranty": "12 years"
+    }
+  },
+  {
+    "id": 23,
+    "name": "Razer DeathAdder V3 Pro",
+    "category": "peripherals",
+    "brand": "Razer",
+    "price": 12999,
+    "description": "Беспроводная игровая мышь с сенсором 30000 DPI, переключатели Razer Optical",
+    "specifications": {
+      "sensor": "Focus Pro 30K",
+      "dpi": "30000",
+      "connectivity": "HyperSpeed Wireless",
+      "battery": "90 hours",
+      "weight": "95g"
+    }
+  },
+  {
+    "id": 24,
+    "name": "Corsair K100 RGB",
+    "category": "peripherals",
+    "brand": "Corsair",
+    "price": 21999,
+    "description": "Механическая игровая клавиатура с переключателями Cherry MX Speed, RGB подсветка",
+    "specifications": {
+      "layout": "104 keys",
+      "switches": "Cherry MX Speed Silver",
+      "connectivity": "USB-C detachable",
+      "polling_rate": "8000Hz",
+      "backlight": "Per-key RGB"
+    }
+  },
+  {
+    "id": 25,
+    "name": "ASUS ProArt Display PA278QV",
+    "category": "monitors",
+    "brand": "ASUS",
+    "price": 29999,
+    "description": "Профессиональный монитор 27\" QHD, 100% sRGB, калибровка цвета, USB-C",
+    "specifications": {
+      "size": "27\"",
+      "resolution": "2560x1440",
+      "color_accuracy": "Delta E < 2",
+      "color_gamut": "100% sRGB, 100% Rec.709",
+      "connectivity": "USB-C, DisplayPort, HDMI"
+    }
+  },
+  {
+    "id": 26,
+    "name": "Arctic Liquid Freezer II 360",
+    "category": "cooling",
+    "brand": "Arctic",
+    "price": 13999,
+    "description": "Жидкостное охлаждение 360mm, PWM регулировка, P12 PWM PST вентиляторы",
+    "specifications": {
+      "radiator": "360mm",
+      "fans": "3x 120mm P12 PWM PST",
+      "pump_speed": "800-2000 RPM",
+      "noise_level": "0.3 Sone",
+      "compatibility": "Intel/AMD"
+    }
+  },
+  {
+    "id": 27,
+    "name": "Lian Li PC-O11 Dynamic EVO",
+    "category": "cases",
+    "brand": "Lian Li",
+    "price": 16999,
+    "description": "Стеклянный корпус mid-tower с отличной вентиляцией, поддержка до 10 вентиляторов",
+    "specifications": {
+      "form_factor": "E-ATX/ATX/mATX/ITX",
+      "max_gpu_length": "420mm",
+      "max_cpu_cooler": "155mm",
+      "fans_support": "10x 120mm/140mm",
+      "radiator_support": "360mm top/side"
+    }
+  },
+  {
+    "id": 28,
+    "name": "HyperX Cloud Alpha S",
+    "category": "peripherals",
+    "brand": "HyperX",
+    "price": 9999,
+    "description": "Игровая гарнитура с 7.1 виртуальным звуком, алюминиевая рама, съемный микрофон",
+    "specifications": {
+      "drivers": "50mm",
+      "frequency": "13Hz-27kHz",
+      "microphone": "Detachable noise-cancelling",
+      "connectivity": "3.5mm/USB",
+      "weight": "310g"
+    }
+  },
+  {
+    "id": 29,
+    "name": "Samsung Odyssey G7 32\"",
+    "category": "monitors",
+    "brand": "Samsung",
+    "price": 54999,
+    "description": "Изогнутый игровой монитор 32\" QHD, 240Hz, 1ms, HDR600, QLED технология",
+    "specifications": {
+      "size": "32\"",
+      "resolution": "2560x1440",
+      "refresh_rate": "240Hz",
+      "curvature": "1000R",
+      "panel": "QLED VA"
+    }
+  },
+  {
+    "id": 30,
+    "name": "Intel Core i5-14600K",
+    "category": "processors",
+    "brand": "Intel",
+    "price": 27999,
+    "description": "14-ядерный процессор 14-го поколения, частота до 5.3 GHz, отличное соотношение цена/производительность",
+    "specifications": {
+      "cores": "14",
+      "threads": "20",
+      "base_frequency": "3.5 GHz",
+      "max_frequency": "5.3 GHz",
+      "socket": "LGA1700"
+    }
+  },
+  {
+    "id": 31,
+    "name": "AMD Ryzen 7 7800X3D",
+    "category": "processors",
+    "brand": "AMD",
+    "price": 44999,
+    "description": "8-ядерный игровой процессор с 3D V-Cache, лучшая производительность в играх",
+    "specifications": {
+      "cores": "8",
+      "threads": "16",
+      "base_frequency": "4.2 GHz",
+      "max_frequency": "5.0 GHz",
+      "socket": "AM5"
+    }
+  },
+  {
+    "id": 32,
+    "name": "G.Skill Trident Z5 RGB 32GB",
+    "category": "memory",
+    "brand": "G.Skill",
+    "price": 16999,
+    "description": "Высокопроизводительная память DDR5-6000, оптимизирована для Intel/AMD платформ",
+    "specifications": {
+      "capacity": "32GB",
+      "type": "DDR5",
+      "frequency": "6000 MHz",
+      "latency": "CL36",
+      "modules": "2x16GB"
+    }
+  },
+  {
+    "id": 33,
+    "name": "Crucial P5 Plus 1TB",
+    "category": "storage",
+    "brand": "Crucial",
+    "price": 9999,
+    "description": "NVMe SSD с PCIe 4.0, скорость чтения до 6600 MB/s, оптимальное соотношение цена/качество",
+    "specifications": {
+      "capacity": "1TB",
+      "interface": "PCIe 4.0 NVMe",
+      "form_factor": "M.2 2280",
+      "read_speed": "6600 MB/s",
+      "write_speed": "5000 MB/s"
+    }
+  },
+  {
+    "id": 34,
+    "name": "MSI B650 Gaming Plus WiFi",
+    "category": "motherboards",
+    "brand": "MSI",
+    "price": 16999,
+    "description": "Материнская плата с чипсетом B650, поддержка AMD Ryzen 7000, WiFi 6, PCIe 5.0",
+    "specifications": {
+      "chipset": "AMD B650",
+      "socket": "AM5",
+      "memory_support": "DDR5-5600+",
+      "pcie_slots": "2x PCIe 5.0",
+      "wifi": "WiFi 6"
+    }
+  },
+  {
+    "id": 35,
+    "name": "EVGA SuperNOVA 750 G6",
+    "category": "power_supplies",
+    "brand": "EVGA",
+    "price": 11999,
+    "description": "Полностью модульный БП 750W, сертификат 80 PLUS Gold, компактный дизайн",
+    "specifications": {
+      "power": "750W",
+      "efficiency": "80 PLUS Gold",
+      "modular": "Full modular",
+      "fan": "130mm",
+      "warranty": "10 years"
+    }
+  },
+  {
+    "id": 36,
+    "name": "Glorious Model O 2 Wireless",
+    "category": "peripherals",
+    "brand": "Glorious",
+    "price": 8999,
+    "description": "Ультралегкая беспроводная мышь 59г, сенсор 26000 DPI, время работы до 80 часов",
+    "specifications": {
+      "sensor": "PixArt PAW3395",
+      "dpi": "26000",
+      "connectivity": "2.4GHz wireless",
+      "battery": "80 hours",
+      "weight": "59g"
+    }
+  },
+  {
+    "id": 37,
+    "name": "Ducky One 3 TKL",
+    "category": "peripherals",
+    "brand": "Ducky",
+    "price": 12999,
+    "description": "Механическая клавиатура TKL формфактора, переключатели Cherry MX, двойная инжекция",
+    "specifications": {
+      "layout": "87 keys TKL",
+      "switches": "Cherry MX Brown/Red/Blue",
+      "keycaps": "PBT double-shot",
+      "connectivity": "USB-C detachable",
+      "backlight": "RGB"
+    }
+  },
+  {
+    "id": 38,
+    "name": "BenQ SW271C",
+    "category": "monitors",
+    "brand": "BenQ",
+    "price": 74999,
+    "description": "Профессиональный фотографический монитор 27\" 4K, 99% Adobe RGB, аппаратная калибровка",
+    "specifications": {
+      "size": "27\"",
+      "resolution": "3840x2160",
+      "color_accuracy": "Delta E ≤ 1.5",
+      "color_gamut": "99% Adobe RGB, 100% sRGB",
+      "connectivity": "USB-C 65W PD"
+    }
+  },
+  {
+    "id": 39,
+    "name": "be quiet! Dark Rock Pro 4",
+    "category": "cooling",
+    "brand": "be quiet!",
+    "price": 8999,
+    "description": "Башенный кулер с двумя вентиляторами, практически бесшумная работа, TDP 250W",
+    "specifications": {
+      "type": "Tower cooler",
+      "fans": "2x 120mm/135mm",
+      "tdp": "250W",
+      "height": "162.8mm",
+      "compatibility": "Intel/AMD"
+    }
+  },
+  {
+    "id": 40,
+    "name": "Phanteks Eclipse P500A",
+    "category": "cases",
+    "brand": "Phanteks",
+    "price": 13999,
+    "description": "Корпус mid-tower с отличным воздушным потоком, 3x 140mm вентилятора в комплекте",
+    "specifications": {
+      "form_factor": "E-ATX/ATX/mATX/ITX",
+      "max_gpu_length": "435mm",
+      "drive_bays": "4x 2.5\", 2x 3.5\"",
+      "fans": "3x 140mm included",
+      "radiator_support": "360mm top/front"
+    }
+  },
+  {
+    "id": 41,
+    "name": "Audio-Technica ATH-M50xBT2",
+    "category": "peripherals",
+    "brand": "Audio-Technica",
+    "price": 19999,
+    "description": "Профессиональные беспроводные наушники с Bluetooth 5.0, время работы до 50 часов",
+    "specifications": {
+      "drivers": "45mm",
+      "frequency": "15Hz-28kHz",
+      "connectivity": "Bluetooth 5.0/3.5mm",
+      "battery": "50 hours",
+      "weight": "307g"
+    }
+  },
+  {
+    "id": 42,
+    "name": "ASUS TUF Gaming VG27AQ",
+    "category": "monitors",
+    "brand": "ASUS",
+    "price": 34999,
+    "description": "Игровой монитор 27\" QHD, 165Hz, G-Sync Compatible, HDR10, IPS панель",
+    "specifications": {
+      "size": "27\"",
+      "resolution": "2560x1440",
+      "refresh_rate": "165Hz",
+      "panel": "IPS",
+      "response_time": "1ms MPRT"
+    }
+  },
+  {
+    "id": 43,
+    "name": "NVIDIA GeForce RTX 4060 Ti",
+    "category": "graphics_cards",
+    "brand": "NVIDIA",
+    "price": 42999,
+    "description": "Игровая видеокарта среднего класса с 16GB GDDR6, отличная для 1440p гейминга",
+    "specifications": {
+      "gpu": "NVIDIA GeForce RTX 4060 Ti",
+      "memory": "16GB GDDR6",
+      "memory_bus": "128-bit",
+      "cuda_cores": "4352",
+      "base_clock": "2310 MHz"
+    }
+  },
+  {
+    "id": 44,
+    "name": "AMD Ryzen 5 7600X",
+    "category": "processors",
+    "brand": "AMD",
+    "price": 24999,
+    "description": "6-ядерный процессор с архитектурой Zen 4, отличная производительность в играх и задачах",
+    "specifications": {
+      "cores": "6",
+      "threads": "12",
+      "base_frequency": "4.7 GHz",
+      "max_frequency": "5.3 GHz",
+      "socket": "AM5"
+    }
+  },
+  {
+    "id": 45,
+    "name": "Corsair Vengeance LPX 16GB DDR4",
+    "category": "memory",
+    "brand": "Corsair",
+    "price": 5999,
+    "description": "Память DDR4-3200 для платформ Intel и AMD, низкий профиль, проверенная совместимость",
+    "specifications": {
+      "capacity": "16GB",
+      "type": "DDR4",
+      "frequency": "3200 MHz",
+      "latency": "CL16",
+      "modules": "2x8GB"
+    }
+  },
+  {
+    "id": 46,
+    "name": "Seagate FireCuda 530 1TB",
+    "category": "storage",
+    "brand": "Seagate",
+    "price": 13999,
+    "description": "NVMe SSD для игр с PCIe 4.0, скорость чтения до 7300 MB/s, 5-летняя гарантия",
+    "specifications": {
+      "capacity": "1TB",
+      "interface": "PCIe 4.0 NVMe",
+      "form_factor": "M.2 2280",
+      "read_speed": "7300 MB/s",
+      "write_speed": "6000 MB/s"
+    }
+  },
+  {
+    "id": 47,
+    "name": "ASUS PRIME B550M-A WiFi",
+    "category": "motherboards",
+    "brand": "ASUS",
+    "price": 11999,
+    "description": "Материнская плата micro-ATX с чипсетом B550, WiFi 6, поддержка PCIe 4.0",
+    "specifications": {
+      "chipset": "AMD B550",
+      "socket": "AM4",
+      "memory_support": "DDR4-4600+",
+      "form_factor": "micro-ATX",
+      "wifi": "WiFi 6"
+    }
+  },
+  {
+    "id": 48,
+    "name": "Cooler Master MWE Gold 650",
+    "category": "power_supplies",
+    "brand": "Cooler Master",
+    "price": 7999,
+    "description": "Блок питания 650W с сертификатом 80 PLUS Gold, 5-летняя гарантия",
+    "specifications": {
+      "power": "650W",
+      "efficiency": "80 PLUS Gold",
+      "modular": "Semi-modular",
+      "fan": "120mm",
+      "warranty": "5 years"
+    }
+  },
+  {
+    "id": 49,
+    "name": "SteelSeries Rival 650 Wireless",
+    "category": "peripherals",
+    "brand": "SteelSeries",
+    "price": 11999,
+    "description": "Беспроводная игровая мышь с системой регулировки веса, сенсор TrueMove3+ 18000 DPI",
+    "specifications": {
+      "sensor": "TrueMove3+ 18000 DPI",
+      "connectivity": "Quantum 2.0 Wireless",
+      "battery": "24+ hours",
+      "weight": "121g (customizable)",
+      "buttons": "7 programmable"
+    }
+  },
+  {
+    "id": 50,
+    "name": "Cooler Master CK721",
+    "category": "peripherals",
+    "brand": "Cooler Master",
+    "price": 8999,
+    "description": "Беспроводная механическая клавиатура 65%, переключатели Red, RGB подсветка",
+    "specifications": {
+      "layout": "65% compact",
+      "switches": "Red switches",
+      "connectivity": "Bluetooth/2.4GHz/USB-C",
+      "battery": "4000mAh",
+      "backlight": "RGB"
+    }
+  },
+  {
+    "id": 51,
+    "name": "AOC CU34G2X",
+    "category": "monitors",
+    "brand": "AOC",
+    "price": 39999,
+    "description": "Изогнутый ультраширокий монитор 34\" QHD, 144Hz, VA панель, FreeSync Premium",
+    "specifications": {
+      "size": "34\"",
+      "resolution": "3440x1440",
+      "refresh_rate": "144Hz",
+      "curvature": "1500R",
+      "panel": "VA"
+    }
+  },
+  {
+    "id": 52,
+    "name": "Deepcool AK620",
+    "category": "cooling",
+    "brand": "Deepcool",
+    "price": 5999,
+    "description": "Башенный кулер с двумя вентиляторами 120mm, TDP 220W, отличное охлаждение за свою цену",
+    "specifications": {
+      "type": "Dual tower",
+      "fans": "2x 120mm",
+      "tdp": "220W",
+      "height": "160mm",
+      "compatibility": "Intel/AMD"
+    }
+  },
+  {
+    "id": 53,
+    "name": "Cooler Master MasterBox TD500 Mesh",
+    "category": "cases",
+    "brand": "Cooler Master",
+    "price": 9999,
+    "description": "Корпус mid-tower с mesh панелью для лучшего воздушного потока, 3x 120mm ARGB вентилятора",
+    "specifications": {
+      "form_factor": "ATX/mATX/ITX",
+      "max_gpu_length": "410mm",
+      "drive_bays": "2x 2.5\", 2x 3.5\"",
+      "fans": "3x 120mm ARGB",
+      "radiator_support": "240mm/280mm"
+    }
+  },
+  {
+    "id": 54,
+    "name": "Beyerdynamic DT 990 Pro",
+    "category": "peripherals",
+    "brand": "Beyerdynamic",
+    "price": 14999,
+    "description": "Профессиональные открытые наушники, импеданс 250 Ом, отличная детализация звука",
+    "specifications": {
+      "type": "Open-back",
+      "drivers": "45mm",
+      "impedance": "250 Ohm",
+      "frequency": "5Hz-35kHz",
+      "weight": "290g"
+    }
+  },
+  {
+    "id": 55,
+    "name": "Dell S2722DC",
+    "category": "monitors",
+    "brand": "Dell",
+    "price": 24999,
+    "description": "USB-C монитор 27\" QHD, 75Hz, IPS панель, подача питания 65W, встроенный KVM",
+    "specifications": {
+      "size": "27\"",
+      "resolution": "2560x1440",
+      "refresh_rate": "75Hz",
+      "panel": "IPS",
+      "usb_c": "65W Power Delivery"
+    }
+  },
+  {
+    "id": 56,
+    "name": "EVGA GeForce RTX 3060 Ti",
+    "category": "graphics_cards",
+    "brand": "EVGA",
+    "price": 39999,
+    "description": "Видеокарта с архитектурой Ampere, 8GB GDDR6, отличная для 1440p гейминга",
+    "specifications": {
+      "gpu": "NVIDIA GeForce RTX 3060 Ti",
+      "memory": "8GB GDDR6",
+      "memory_bus": "256-bit",
+      "cuda_cores": "4864",
+      "base_clock": "1410 MHz"
+    }
+  },
+  {
+    "id": 57,
+    "name": "Intel Core i7-13700K",
+    "category": "processors",
+    "brand": "Intel",
+    "price": 39999,
+    "description": "16-ядерный процессор 13-го поколения, частота до 5.4 GHz, отличная многозадачность",
+    "specifications": {
+      "cores": "16",
+      "threads": "24",
+      "base_frequency": "3.4 GHz",
+      "max_frequency": "5.4 GHz",
+      "socket": "LGA1700"
+    }
+  },
+  {
+    "id": 58,
+    "name": "Crucial Ballistix 32GB DDR4",
+    "category": "memory",
+    "brand": "Crucial",
+    "price": 11999,
+    "description": "Игровая память DDR4-3600, 32GB (2x16GB), оптимизирована для разгона",
+    "specifications": {
+      "capacity": "32GB",
+      "type": "DDR4",
+      "frequency": "3600 MHz",
+      "latency": "CL16",
+      "modules": "2x16GB"
+    }
+  },
+  {
+    "id": 59,
+    "name": "ADATA XPG SX8200 Pro 500GB",
+    "category": "storage",
+    "brand": "ADATA",
+    "price": 5499,
+    "description": "Бюджетный NVMe SSD с PCIe 3.0, скорость чтения до 3500 MB/s",
+    "specifications": {
+      "capacity": "500GB",
+      "interface": "PCIe 3.0 NVMe",
+      "form_factor": "M.2 2280",
+      "read_speed": "3500 MB/s",
+      "write_speed": "3000 MB/s"
+    }
+  },
+  {
+    "id": 60,
+    "name": "ASRock B450M Pro4",
+    "category": "motherboards",
+    "brand": "ASRock",
+    "price": 7999,
+    "description": "Бюджетная материнская плата micro-ATX с чипсетом B450, поддержка Ryzen до 5000 серии",
+    "specifications": {
+      "chipset": "AMD B450",
+      "socket": "AM4",
+      "memory_support": "DDR4-3200+",
+      "form_factor": "micro-ATX",
+      "pcie_slots": "2x PCIe 3.0"
+    }
+  },
+  {
+    "id": 61,
+    "name": "Thermaltake Smart 600W",
+    "category": "power_supplies",
+    "brand": "Thermaltake",
+    "price": 4999,
+    "description": "Бюджетный блок питания 600W с сертификатом 80 PLUS White",
+    "specifications": {
+      "power": "600W",
+      "efficiency": "80 PLUS White",
+      "modular": "Non-modular",
+      "fan": "120mm",
+      "warranty": "3 years"
+    }
+  },
+  {
+    "id": 62,
+    "name": "Logitech G305 Lightspeed",
+    "category": "peripherals",
+    "brand": "Logitech",
+    "price": 4999,
+    "description": "Беспроводная игровая мышь с сенсором HERO 12K, время работы до 250 часов",
+    "specifications": {
+      "sensor": "HERO 12K",
+      "dpi": "12000",
+      "connectivity": "Lightspeed wireless",
+      "battery": "250 hours (AA)",
+      "weight": "99g"
+    }
+  },
+  {
+    "id": 63,
+    "name": "HyperX Alloy Origins 60",
+    "category": "peripherals",
+    "brand": "HyperX",
+    "price": 7999,
+    "description": "Компактная механическая клавиатура 60%, переключатели HyperX Red, съемный кабель",
+    "specifications": {
+      "layout": "60% compact",
+      "switches": "HyperX Red Linear",
+      "connectivity": "USB-C detachable",
+      "keycaps": "PBT pudding",
+      "backlight": "RGB"
+    }
+  },
+  {
+    "id": 64,
+    "name": "ASUS VP249HE",
+    "category": "monitors",
+    "brand": "ASUS",
+    "price": 12999,
+    "description": "Бюджетный монитор 24\" Full HD, IPS панель, 75Hz, FreeSync, тонкие рамки",
+    "specifications": {
+      "size": "24\"",
+      "resolution": "1920x1080",
+      "refresh_rate": "75Hz",
+      "panel": "IPS",
+      "response_time": "1ms MPRT"
+    }
+  },
+  {
+    "id": 65,
+    "name": "ID-Cooling SE-224-XT",
+    "category": "cooling",
+    "brand": "ID-Cooling",
+    "price": 1999,
+    "description": "Бюджетный башенный кулер с 4 тепловыми трубками, TDP 150W",
+    "specifications": {
+      "type": "Tower cooler",
+      "fans": "1x 120mm",
+      "tdp": "150W",
+      "height": "154mm",
+      "compatibility": "Intel/AMD"
+    }
+  },
+  {
+    "id": 66,
+    "name": "Deepcool MATREXX 50",
+    "category": "cases",
+    "brand": "Deepcool",
+    "price": 4999,
+    "description": "Бюджетный корпус mid-tower с боковым окном, поддержка ATX материнских плат",
+    "specifications": {
+      "form_factor": "ATX/mATX/ITX",
+      "max_gpu_length": "370mm",
+      "drive_bays": "2x 2.5\", 2x 3.5\"",
+      "fans": "1x 120mm rear",
+      "window": "Tempered glass"
+    }
+  },
+  {
+    "id": 67,
+    "name": "Creative Sound Blaster G3",
+    "category": "peripherals",
+    "brand": "Creative",
+    "price": 6999,
+    "description": "Внешняя звуковая карта USB-C/A, 7.1 виртуальный звук, микрофонные фильтры",
+    "specifications": {
+      "interface": "USB-C/USB-A",
+      "output": "7.1 virtual surround",
+      "microphone": "Noise reduction",
+      "compatibility": "PC/Mac/PS5/Switch",
+      "controls": "Hardware volume"
+    }
+  },
+  {
+    "id": 68,
+    "name": "ViewSonic VX2758-2KP-MHD",
+    "category": "monitors",
+    "brand": "ViewSonic",
+    "price": 22999,
+    "description": "Игровой монитор 27\" QHD, 144Hz, IPS панель, FreeSync Premium, HDR10",
+    "specifications": {
+      "size": "27\"",
+      "resolution": "2560x1440",
+      "refresh_rate": "144Hz",
+      "panel": "Fast IPS",
+      "response_time": "1ms MPRT"
+    }
+  },
+  {
+    "id": 69,
+    "name": "PowerColor Red Devil RX 6700 XT",
+    "category": "graphics_cards",
+    "brand": "PowerColor",
+    "price": 34999,
+    "description": "Видеокарта AMD с архитектурой RDNA 2, 12GB GDDR6, улучшенное охлаждение",
+    "specifications": {
+      "gpu": "AMD Radeon RX 6700 XT",
+      "memory": "12GB GDDR6",
+      "memory_bus": "192-bit",
+      "stream_processors": "2560",
+      "game_clock": "2424 MHz"
+    }
+  },
+  {
+    "id": 70,
+    "name": "AMD Ryzen 3 4300G",
+    "category": "processors",
+    "brand": "AMD",
+    "price": 12999,
+    "description": "4-ядерный APU с интегрированной графикой Radeon, отличное решение для офиса",
+    "specifications": {
+      "cores": "4",
+      "threads": "8",
+      "base_frequency": "3.8 GHz",
+      "max_frequency": "4.0 GHz",
+      "igpu": "Radeon Graphics"
+    }
+  },
+  {
+    "id": 71,
+    "name": "Team T-Force Vulcan Z 16GB",
+    "category": "memory",
+    "brand": "Team Group",
+    "price": 4499,
+    "description": "Бюджетная память DDR4-3000, 16GB (2x8GB), серый радиатор",
+    "specifications": {
+      "capacity": "16GB",
+      "type": "DDR4",
+      "frequency": "3000 MHz",
+      "latency": "CL16",
+      "modules": "2x8GB"
+    }
+  },
+  {
+    "id": 72,
+    "name": "Kingston NV2 1TB",
+    "category": "storage",
+    "brand": "Kingston",
+    "price": 4999,
+    "description": "Бюджетный NVMe SSD с PCIe 4.0, скорость чтения до 3500 MB/s",
+    "specifications": {
+      "capacity": "1TB",
+      "interface": "PCIe 4.0 NVMe",
+      "form_factor": "M.2 2280",
+      "read_speed": "3500 MB/s",
+      "write_speed": "2100 MB/s"
+    }
+  },
+  {
+    "id": 73,
+    "name": "MSI A320M-A PRO MAX",
+    "category": "motherboards",
+    "brand": "MSI",
+    "price": 4999,
+    "description": "Максимально бюджетная материнская плата с чипсетом A320, поддержка Ryzen до 3000 серии",
+    "specifications": {
+      "chipset": "AMD A320",
+      "socket": "AM4",
+      "memory_support": "DDR4-3200",
+      "form_factor": "micro-ATX",
+      "pcie_slots": "1x PCIe 3.0"
+    }
+  },
+  {
+    "id": 74,
+    "name": "GIGABYTE GP-P450B",
+    "category": "power_supplies",
+    "brand": "GIGABYTE",
+    "price": 3999,
+    "description": "Базовый блок питания 450W с сертификатом 80 PLUS Bronze",
+    "specifications": {
+      "power": "450W",
+      "efficiency": "80 PLUS Bronze",
+      "modular": "Non-modular",
+      "fan": "120mm",
+      "warranty": "3 years"
+    }
+  },
+  {
+    "id": 75,
+    "name": "A4Tech Bloody V7M",
+    "category": "peripherals",
+    "brand": "A4Tech",
+    "price": 1999,
+    "description": "Бюджетная игровая мышь с сенсором 3200 DPI, 7 программируемых кнопок",
+    "specifications": {
+      "sensor": "Optical 3200 DPI",
+      "connectivity": "USB wired",
+      "buttons": "7 programmable",
+      "weight": "125g",
+      "cable": "1.8m braided"
+    }
+  },
+  {
+    "id": 76,
+    "name": "Defender Redragon Kumara K552",
+    "category": "peripherals",
+    "brand": "Redragon",
+    "price": 3999,
+    "description": "Бюджетная механическая клавиатура TKL, синие переключатели, красная подсветка",
+    "specifications": {
+      "layout": "87 keys TKL",
+      "switches": "Blue mechanical",
+      "connectivity": "USB wired",
+      "backlight": "Red LED",
+      "build": "Metal plate"
+    }
+  },
+  {
+    "id": 77,
+    "name": "AOC 22B2AM",
+    "category": "monitors",
+    "brand": "AOC",
+    "price": 7999,
+    "description": "Базовый офисный монитор 22\" Full HD, TN панель, 75Hz",
+    "specifications": {
+      "size": "22\"",
+      "resolution": "1920x1080",
+      "refresh_rate": "75Hz",
+      "panel": "TN",
+      "response_time": "1ms"
+    }
+  },
+  {
+    "id": 78,
+    "name": "Zalman CNPS10X Performa",
+    "category": "cooling",
+    "brand": "Zalman",
+    "price": 2499,
+    "description": "Башенный кулер с одним вентилятором, TDP 130W, тихая работа",
+    "specifications": {
+      "type": "Tower cooler",
+      "fans": "1x 120mm",
+      "tdp": "130W",
+      "height": "159mm",
+      "compatibility": "Intel/AMD"
+    }
+  },
+  {
+    "id": 79,
+    "name": "AeroCool Cylon",
+    "category": "cases",
+    "brand": "AeroCool",
+    "price": 3499,
+    "description": "Бюджетный корпус mid-tower с RGB подсветкой, акриловое боковое окно",
+    "specifications": {
+      "form_factor": "ATX/mATX/ITX",
+      "max_gpu_length": "350mm",
+      "drive_bays": "2x 2.5\", 1x 3.5\"",
+      "fans": "1x 120mm RGB front",
+      "window": "Acrylic"
+    }
+  },
+  {
+    "id": 80,
+    "name": "Oklick HS-L450G THUNDER",
+    "category": "peripherals",
+    "brand": "Oklick",
+    "price": 2999,
+    "description": "Бюджетная игровая гарнитура с RGB подсветкой, микрофон с шумоподавлением",
+    "specifications": {
+      "drivers": "50mm",
+      "frequency": "20Hz-20kHz",
+      "microphone": "Noise-cancelling",
+      "connectivity": "3.5mm + USB (RGB)",
+      "backlight": "RGB"
+    }
+  },
+  {
+    "id": 81,
+    "name": "LG 32UL500-W",
+    "category": "monitors",
+    "brand": "LG",
+    "price": 32999,
+    "description": "4K монитор 32\", VA панель, 60Hz, FreeSync, HDR10, отличное соотношение цена/качество",
+    "specifications": {
+      "size": "32\"",
+      "resolution": "3840x2160",
+      "refresh_rate": "60Hz",
+      "panel": "VA",
+      "hdr": "HDR10"
+    }
+  },
+  {
+    "id": 82,
+    "name": "Sapphire Pulse RX 6600",
+    "category": "graphics_cards",
+    "brand": "Sapphire",
+    "price": 24999,
+    "description": "Компактная игровая видеокарта AMD, 8GB GDDR6, отлично для 1080p гейминга",
+    "specifications": {
+      "gpu": "AMD Radeon RX 6600",
+      "memory": "8GB GDDR6",
+      "memory_bus": "128-bit",
+      "stream_processors": "1792",
+      "game_clock": "2044 MHz"
+    }
+  },
+  {
+    "id": 83,
+    "name": "Intel Core i3-12100F",
+    "category": "processors",
+    "brand": "Intel",
+    "price": 9999,
+    "description": "4-ядерный процессор 12-го поколения без встроенной графики, отличное бюджетное решение",
+    "specifications": {
+      "cores": "4",
+      "threads": "8",
+      "base_frequency": "3.3 GHz",
+      "max_frequency": "4.3 GHz",
+      "socket": "LGA1700"
+    }
+  },
+  {
+    "id": 84,
+    "name": "Patriot Viper Steel 16GB DDR4",
+    "category": "memory",
+    "brand": "Patriot",
+    "price": 5499,
+    "description": "Высокочастотная память DDR4-3200, 16GB (2x8GB), стальной радиатор",
+    "specifications": {
+      "capacity": "16GB",
+      "type": "DDR4",
+      "frequency": "3200 MHz",
+      "latency": "CL16",
+      "modules": "2x8GB"
+    }
+  },
+  {
+    "id": 85,
+    "name": "WD Blue SN570 500GB",
+    "category": "storage",
+    "brand": "Western Digital",
+    "price": 3999,
+    "description": "Бюджетный NVMe SSD с PCIe 3.0, скорость чтения до 3500 MB/s",
+    "specifications": {
+      "capacity": "500GB",
+      "interface": "PCIe 3.0 NVMe",
+      "form_factor": "M.2 2280",
+      "read_speed": "3500 MB/s",
+      "write_speed": "2300 MB/s"
+    }
+  },
+  {
+    "id": 86,
+    "name": "GIGABYTE H610M H",
+    "category": "motherboards",
+    "brand": "GIGABYTE",
+    "price": 6999,
+    "description": "Бюджетная материнская плата с чипсетом H610, поддержка Intel 12-13 поколения",
+    "specifications": {
+      "chipset": "Intel H610",
+      "socket": "LGA1700",
+      "memory_support": "DDR4-3200",
+      "form_factor": "micro-ATX",
+      "pcie_slots": "1x PCIe 4.0"
+    }
+  },
+  {
+    "id": 87,
+    "name": "be quiet! System Power 10 500W",
+    "category": "power_supplies",
+    "brand": "be quiet!",
+    "price": 5999,
+    "description": "Тихий блок питания 500W с сертификатом 80 PLUS Bronze, 3-летняя гарантия",
+    "specifications": {
+      "power": "500W",
+      "efficiency": "80 PLUS Bronze",
+      "modular": "Non-modular",
+      "fan": "120mm",
+      "warranty": "3 years"
+    }
+  },
+  {
+    "id": 88,
+    "name": "Logitech B100",
+    "category": "peripherals",
+    "brand": "Logitech",
+    "price": 999,
+    "description": "Базовая оптическая мышь для офиса, USB подключение, 800 DPI",
+    "specifications": {
+      "sensor": "Optical 800 DPI",
+      "connectivity": "USB wired",
+      "buttons": "3",
+      "weight": "90g",
+      "cable": "1.8m"
+    }
+  },
+  {
+    "id": 89,
+    "name": "Logitech K120",
+    "category": "peripherals",
+    "brand": "Logitech",
+    "price": 1499,
+    "description": "Базовая проводная клавиатура для офиса, устойчивая к проливанию жидкости",
+    "specifications": {
+      "layout": "104 keys",
+      "type": "Membrane",
+      "connectivity": "USB wired",
+      "spill_resistant": "Yes",
+      "quiet_keys": "Yes"
+    }
+  },
+  {
+    "id": 90,
+    "name": "Philips 223V5LHSB",
+    "category": "monitors",
+    "brand": "Philips",
+    "price": 8999,
+    "description": "Базовый монитор 22\" Full HD, HDMI, экономичное энергопотребление",
+    "specifications": {
+      "size": "22\"",
+      "resolution": "1920x1080",
+      "refresh_rate": "60Hz",
+      "panel": "TN",
+      "inputs": "HDMI, VGA"
+    }
+  },
+  {
+    "id": 91,
+    "name": "Cooler Master Hyper 212 EVO V2",
+    "category": "cooling",
+    "brand": "Cooler Master",
+    "price": 3499,
+    "description": "Популярный башенный кулер с обновленным дизайном, TDP 150W",
+    "specifications": {
+      "type": "Tower cooler",
+      "fans": "1x 120mm PWM",
+      "tdp": "150W",
+      "height": "158.5mm",
+      "compatibility": "Intel/AMD"
+    }
+  },
+  {
+    "id": 92,
+    "name": "Thermaltake Versa H18",
+    "category": "cases",
+    "brand": "Thermaltake",
+    "price": 2999,
+    "description": "Компактный корпус micro-ATX с боковым окном, базовая комплектация",
+    "specifications": {
+      "form_factor": "mATX/ITX",
+      "max_gpu_length": "350mm",
+      "drive_bays": "2x 2.5\", 1x 3.5\"",
+      "fans": "1x 120mm rear",
+      "window": "Acrylic"
+    }
+  },
+  {
+    "id": 93,
+    "name": "Defender Redragon Zeus H510",
+    "category": "peripherals",
+    "brand": "Redragon",
+    "price": 3499,
+    "description": "Игровая гарнитура с виртуальным 7.1 звуком, RGB подсветка, USB подключение",
+    "specifications": {
+      "drivers": "50mm",
+      "frequency": "20Hz-20kHz",
+      "microphone": "Omnidirectional",
+      "connectivity": "USB",
+      "surround": "Virtual 7.1"
+    }
+  },
+  {
+    "id": 94,
+    "name": "MSI Optix G241",
+    "category": "monitors",
+    "brand": "MSI",
+    "price": 14999,
+    "description": "Игровой монитор 24\" Full HD, 144Hz, IPS панель, FreeSync Premium",
+    "specifications": {
+      "size": "24\"",
+      "resolution": "1920x1080",
+      "refresh_rate": "144Hz",
+      "panel": "Rapid IPS",
+      "response_time": "1ms"
+    }
+  },
+  {
+    "id": 95,
+    "name": "Zotac GeForce GTX 1660 Super",
+    "category": "graphics_cards",
+    "brand": "Zotac",
+    "price": 19999,
+    "description": "Бюджетная игровая видеокарта, 6GB GDDR6, отлично для 1080p гейминга",
+    "specifications": {
+      "gpu": "NVIDIA GeForce GTX 1660 Super",
+      "memory": "6GB GDDR6",
+      "memory_bus": "192-bit",
+      "cuda_cores": "1408",
+      "base_clock": "1530 MHz"
+    }
+  },
+  {
+    "id": 96,
+    "name": "AMD Athlon 3000G",
+    "category": "processors",
+    "brand": "AMD",
+    "price": 5999,
+    "description": "Бюджетный двухядерный APU с интегрированной графикой Radeon Vega 3",
+    "specifications": {
+      "cores": "2",
+      "threads": "4",
+      "base_frequency": "3.5 GHz",
+      "socket": "AM4",
+      "igpu": "Radeon Vega 3"
+    }
+  },
+  {
+    "id": 97,
+    "name": "Silicon Power 8GB DDR4",
+    "category": "memory",
+    "brand": "Silicon Power",
+    "price": 2499,
+    "description": "Базовая память DDR4-2666, 8GB одиночный модуль для офисных задач",
+    "specifications": {
+      "capacity": "8GB",
+      "type": "DDR4",
+      "frequency": "2666 MHz",
+      "latency": "CL19",
+      "modules": "1x8GB"
+    }
+  },
+  {
+    "id": 98,
+    "name": "Transcend 110S 128GB",
+    "category": "storage",
+    "brand": "Transcend",
+    "price": 1999,
+    "description": "Минимальный NVMe SSD для системного диска, PCIe 3.0, скорость чтения до 1700 MB/s",
+    "specifications": {
+      "capacity": "128GB",
+      "interface": "PCIe 3.0 NVMe",
+      "form_factor": "M.2 2280",
+      "read_speed": "1700 MB/s",
+      "write_speed": "1000 MB/s"
+    }
+  },
+  {
+    "id": 99,
+    "name": "Biostar A320MH",
+    "category": "motherboards",
+    "brand": "Biostar",
+    "price": 3499,
+    "description": "Минималистичная материнская плата micro-ATX с чипсетом A320",
+    "specifications": {
+      "chipset": "AMD A320",
+      "socket": "AM4",
+      "memory_support": "DDR4-2667",
+      "form_factor": "micro-ATX",
+      "pcie_slots": "1x PCIe 3.0"
+    }
+  },
+  {
+    "id": 100,
+    "name": "Chieftec GPS-400A8",
+    "category": "power_supplies",
+    "brand": "Chieftec",
+    "price": 2999,
+    "description": "Базовый блок питания 400W, простая конструкция для офисных систем",
+    "specifications": {
+      "power": "400W",
+      "efficiency": "Standard",
+      "modular": "Non-modular",
+      "fan": "120mm",
+      "warranty": "2 years"
+    }
+  }
+]

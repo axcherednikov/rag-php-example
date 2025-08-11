@@ -1,9 +1,13 @@
-# This file is the entry point to configure your own services.
-# Files in the packages/ subdirectory configure your dependencies.
+# This file configures dependency injection for the RAG system
+# following SOLID principles and proper separation of concerns.
 
-# Put parameters here that don't need to change on each machine where the app is deployed
-# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
+    app.qdrant.host: 'http://localhost'
+    app.qdrant.port: 6333
+    app.ollama.url: 'http://localhost:11434'
+    app.embedding.model: 'onnx-community/Qwen3-Embedding-0.6B-ONNX'
+    app.llama.model: 'llama3.2:1b'
+    app.log.directory: 'var/log'
 
 services:
     # default configuration for services in *this* file
@@ -16,5 +20,49 @@ services:
     App\:
         resource: '../src/'
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+    # RAG Service Interfaces - configured for proper dependency injection
+    
+    # Logger Interface
+    App\Contract\LoggerInterface:
+        class: App\Service\Logging\FileLogger
+        arguments:
+            $logDirectory: '%app.log.directory%'
+            $logFile: 'rag.log'
+
+    # Context Service Interface  
+    App\Contract\ContextServiceInterface:
+        class: App\Service\ChatContextService
+
+    # Embedding Service Interface
+    App\Contract\EmbeddingServiceInterface:
+        class: App\Service\Embedding\TransformersEmbeddingService
+        arguments:
+            $modelName: '%app.embedding.model%'
+
+    # Query Processor Interface
+    App\Contract\QueryProcessorInterface:
+        class: App\Service\Query\LlamaQueryProcessor
+
+    # Document Retriever Interface
+    App\Contract\DocumentRetrieverInterface:
+        class: App\Service\Retrieval\QdrantDocumentRetriever
+        arguments:
+            $host: '%app.qdrant.host%'
+            $port: '%app.qdrant.port%'
+
+    # Response Generator Interface
+    App\Contract\ResponseGeneratorInterface:
+        class: App\Service\Generation\LlamaResponseGenerator
+
+    # Main RAG Service - uses refactored implementation
+    App\Service\RAGServiceInterface:
+        class: App\Service\RefactoredRAGService
+
+    # LlamaService configuration
+    App\Service\LlamaService:
+        arguments:
+            $httpClient: '@Symfony\Contracts\HttpClient\HttpClientInterface'
+
+    # HTTP Client for external services
+    Symfony\Contracts\HttpClient\HttpClientInterface:
+        class: Symfony\Component\HttpClient\HttpClient

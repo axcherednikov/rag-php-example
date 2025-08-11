@@ -1,0 +1,24 @@
+service:
+  http_port: 6333
+  grpc_port: 6334
+  max_request_size_mb: 32
+
+log_level: INFO
+
+storage:
+  # Enable Write-Ahead-Log (WAL) for data safety
+  wal:
+    wal_capacity_mb: 32
+    wal_segments_ahead: 0
+
+  # Optimize for fast search
+  performance:
+    # Maximum number of segments per collection
+    max_segment_size_kb: 20000
+    # Memory mapping configuration
+    memmap_threshold_kb: 65536
+    
+  # Disable unnecessary features for demo
+  quantization:
+    rescore: false
+    oversampling: 1.0
