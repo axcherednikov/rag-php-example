@@ -20,7 +20,7 @@ jobs:
         ports:
           - 6333:6333
           - 6334:6334
-        options: --health-cmd="curl --fail http://localhost:6333/health" --health-interval=10s --health-timeout=5s --health-retries=3
+        options: --health-cmd="curl --fail http://localhost:6333/health" --health-interval=10s --health-timeout=10s --health-retries=6
 
     steps:
       - name: Checkout code
@@ -52,7 +52,7 @@ jobs:
 
       - name: Test Qdrant connection
         run: |
-          timeout 30 bash -c 'until curl --silent --fail http://localhost:6333/health; do sleep 1; done'
+          timeout 60 bash -c 'until curl --silent --fail http://localhost:6333/health; do sleep 2; done'
           echo "Qdrant is ready"
 
   docker:
