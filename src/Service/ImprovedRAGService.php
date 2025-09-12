@@ -109,12 +109,18 @@ class ImprovedRAGService implements RAGServiceInterface
     /**
      * ЭТАП 2: Retrieval
      * Выполняет векторный поиск в Qdrant с возможной фильтрацией по категории.
+     *
+     * @return array<int, array<string, mixed>>
      */
     private function retrieveDocuments(string $optimizedQuery, ?string $categoryFilter = null): array
     {
         // Векторизуем оптимизированный запрос
+        if (null === $this->embedder) {
+            throw RAGException::serviceUnavailable('Embedder not initialized');
+        }
+
         $embedding = ($this->embedder)($optimizedQuery, pooling: 'mean', normalize: true);
-        $queryVector = $embedding[0];
+        $queryVector = is_array($embedding) ? $embedding[0] : ($embedding instanceof \Codewithkyrian\Transformers\Tensor\Tensor ? $embedding[0] : []);
 
         // Создаем поисковый запрос для Qdrant
         $searchVector = new VectorStruct($queryVector, 'default');
@@ -135,7 +141,7 @@ class ImprovedRAGService implements RAGServiceInterface
         // Выполняем поиск
         try {
             $response = $this->qdrantClient
-                ->collections(self::COLLECTION_NAME)
+                ?->collections(self::COLLECTION_NAME)
                 ->points()
                 ->search($searchRequest);
 
@@ -148,6 +154,8 @@ class ImprovedRAGService implements RAGServiceInterface
     /**
      * ЭТАП 3: Generation
      * Генерирует персонализированный ответ на основе найденных документов.
+     *
+     * @param array<int, array<string, mixed>> $documents
      */
     private function generateResponse(array $documents, string $originalQuery): string
     {
@@ -196,6 +204,8 @@ class ImprovedRAGService implements RAGServiceInterface
 
     /**
      * Проверка готовности всех компонентов RAG системы.
+     *
+     * @return array<string, mixed>
      */
     public function healthCheck(): array
     {
@@ -218,7 +228,7 @@ class ImprovedRAGService implements RAGServiceInterface
             $this->ensureInitialized();
 
             // Проверка Qdrant
-            $this->qdrantClient->collections(self::COLLECTION_NAME)->info();
+            $this->qdrantClient?->collections(self::COLLECTION_NAME)->info();
             $health['qdrant'] = true;
 
             // Проверка embedder (если инициализирован без ошибок, то работает)
@@ -235,12 +245,14 @@ class ImprovedRAGService implements RAGServiceInterface
 
     /**
      * Получить статистику коллекции.
+     *
+     * @return array<string, mixed>
      */
     public function getCollectionStats(): array
     {
         try {
             $this->ensureInitialized();
-            $info = $this->qdrantClient->collections(self::COLLECTION_NAME)->info();
+            $info = $this->qdrantClient?->collections(self::COLLECTION_NAME)->info();
 
             return [
                 'vectors_count' => $info['result']['vectors_count'] ?? 0,

@@ -15,8 +15,8 @@ interface ResponseGeneratorInterface
     /**
      * Generate AI response based on retrieved documents.
      *
-     * @param array  $documents     Retrieved documents from vector database
-     * @param string $originalQuery Original user query
+     * @param array<int, array<string, mixed>> $documents     Retrieved documents from vector database
+     * @param string                           $originalQuery Original user query
      *
      * @return string Generated natural language response
      *

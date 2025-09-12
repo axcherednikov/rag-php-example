@@ -31,11 +31,18 @@ final class TransformersEmbeddingService implements EmbeddingServiceInterface
     ) {
     }
 
+    /**
+     * @return array<int, float>
+     */
     public function embed(string $text): array
     {
         $this->ensureInitialized();
 
         try {
+            if (null === $this->embedder) {
+                throw RAGException::serviceUnavailable('Embedder not initialized');
+            }
+
             $result = ($this->embedder)($text, pooling: 'mean', normalize: true);
 
             if (!is_array($result) || empty($result)) {

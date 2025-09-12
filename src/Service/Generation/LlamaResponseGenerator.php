@@ -53,7 +53,7 @@ final class LlamaResponseGenerator implements ResponseGeneratorInterface
     /**
      * Generate a simple fallback response when LLM fails.
      *
-     * @param array $documents Retrieved documents
+     * @param array<int, array<string, mixed>> $documents Retrieved documents
      *
      * @return string Basic fallback response
      */

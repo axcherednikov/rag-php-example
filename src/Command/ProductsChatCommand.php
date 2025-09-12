@@ -75,6 +75,9 @@ final class ProductsChatCommand extends Command
         }
     }
 
+    /**
+     * @param array<int, array<string, mixed>> $results
+     */
     private function displayChatResults(array $results, string $aiResponse, SymfonyStyle $io): void
     {
         $io->section('Рекомендации');

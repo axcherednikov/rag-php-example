@@ -32,6 +32,8 @@ class LlamaService
 
     /**
      * Генерирует персонализированный ответ на основе результатов поиска.
+     *
+     * @param array<int, array<string, mixed>> $searchResults
      */
     public function generateProductResponse(array $searchResults, string $originalQuery): string
     {
@@ -43,6 +45,8 @@ class LlamaService
     /**
      * НОВЫЙ МЕТОД: Генерирует строго ограниченный ответ только на основе найденных товаров
      * LLM НЕ должна ничего добавлять от себя, работает только с предоставленным контекстом
+     *
+     * @param array<int, array<string, mixed>> $searchResults
      */
     public function generateConstrainedResponse(array $searchResults, string $originalQuery): string
     {
@@ -119,6 +123,8 @@ PROMPT;
 
     /**
      * Создает промпт для генерации ответа пользователю.
+     *
+     * @param array<int, array<string, mixed>> $searchResults
      */
     private function buildResponsePrompt(array $searchResults, string $originalQuery): string
     {
@@ -150,6 +156,8 @@ PROMPT;
     /**
      * УЛУЧШЕННЫЙ ПРОМПТ: Строго ограниченный промпт для RAG с улучшенной логикой
      * LLM должна работать ТОЛЬКО с предоставленными товарами, ничего не добавлять от себя.
+     *
+     * @param array<int, array<string, mixed>> $searchResults
      */
     private function buildConstrainedResponsePrompt(array $searchResults, string $originalQuery): string
     {
@@ -212,7 +220,7 @@ PROMPT;
         ];
 
         foreach ($prefixes as $pattern) {
-            $searchTerm = preg_replace($pattern, '', $searchTerm);
+            $searchTerm = preg_replace($pattern, '', $searchTerm) ?? $searchTerm;
         }
 
         $searchTerm = trim($searchTerm, '"\'');
@@ -244,6 +252,8 @@ PROMPT;
 
     /**
      * Получает список доступных моделей.
+     *
+     * @return array<int, string>
      */
     public function getAvailableModels(): array
     {

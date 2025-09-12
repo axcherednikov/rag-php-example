@@ -9,6 +9,9 @@ namespace App\DTO;
  */
 readonly class RAGSearchResult
 {
+    /**
+     * @param array<int, array<string, mixed>> $documents
+     */
     public function __construct(
         public string $originalQuery,
         public string $optimizedQuery,
@@ -36,6 +39,9 @@ readonly class RAGSearchResult
         return $this->documents[0]['score'] ?? null;
     }
 
+    /**
+     * @return array<int, float>
+     */
     public function getAllScores(): array
     {
         return array_map(
@@ -44,6 +50,9 @@ readonly class RAGSearchResult
         );
     }
 
+    /**
+     * @return array<int, array<string, mixed>>
+     */
     public function getProducts(): array
     {
         return array_map(

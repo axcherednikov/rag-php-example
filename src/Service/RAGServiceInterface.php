@@ -18,6 +18,8 @@ interface RAGServiceInterface
 
     /**
      * Проверяет готовность всех компонентов системы.
+     *
+     * @return array<string, mixed>
      */
     public function healthCheck(): array;
 }

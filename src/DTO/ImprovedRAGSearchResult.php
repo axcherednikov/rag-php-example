@@ -15,7 +15,7 @@ use App\ValueObject\SearchQuery;
 final readonly class ImprovedRAGSearchResult
 {
     /**
-     * @param SearchResult[] $results
+     * @param array<int, SearchResult> $results
      */
     public function __construct(
         public SearchQuery $originalQuery,
@@ -83,7 +83,7 @@ final readonly class ImprovedRAGSearchResult
     /**
      * Get results with high relevance only.
      *
-     * @return SearchResult[] High relevance results
+     * @return array<int, SearchResult> High relevance results
      */
     public function getHighRelevanceResults(): array
     {
@@ -96,7 +96,7 @@ final readonly class ImprovedRAGSearchResult
     /**
      * Get unique categories from results.
      *
-     * @return string[] Array of unique categories
+     * @return array<int, string> Array of unique categories
      */
     public function getCategories(): array
     {
@@ -111,7 +111,7 @@ final readonly class ImprovedRAGSearchResult
     /**
      * Get unique brands from results.
      *
-     * @return string[] Array of unique brands
+     * @return array<int, string> Array of unique brands
      */
     public function getBrands(): array
     {
@@ -148,7 +148,7 @@ final readonly class ImprovedRAGSearchResult
     /**
      * Convert to array for API responses.
      *
-     * @return array Complete array representation
+     * @return array<string, mixed> Complete array representation
      */
     public function toArray(): array
     {

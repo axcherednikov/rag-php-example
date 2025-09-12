@@ -75,6 +75,10 @@ final class ProductsVectorizeCommand extends Command
         }
 
         $json = file_get_contents(self::DATA_FILE);
+        if (false === $json) {
+            throw new \RuntimeException('Failed to read products data file');
+        }
+
         $products = json_decode($json, true);
 
         if (!$products) {
@@ -117,6 +121,9 @@ final class ProductsVectorizeCommand extends Command
         }
     }
 
+    /**
+     * @param array<int, array<string, mixed>> $batch
+     */
     private function processBatch(array $batch): void
     {
         $pointsStruct = new PointsStruct();
@@ -143,10 +150,18 @@ final class ProductsVectorizeCommand extends Command
                 'description' => $product['description'],
             ];
 
+            // Handle different embedding result types
+            if (is_array($embedding)) {
+                $vector = $embedding[0];
+            } else {
+                // For Tensor objects, convert to array and take first element
+                $vector = $embedding instanceof \Codewithkyrian\Transformers\Tensor\Tensor ? $embedding[0] : [];
+            }
+
             $pointsStruct->addPoint(
                 new PointStruct(
                     $product['id'],
-                    new VectorStruct($embedding[0], 'default'),
+                    new VectorStruct($vector, 'default'),
                     $payload
                 )
             );

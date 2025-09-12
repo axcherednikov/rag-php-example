@@ -65,9 +65,9 @@ final class FileLogger implements LoggerInterface
     /**
      * Write log entry to file.
      *
-     * @param string $level   Log level
-     * @param string $message Log message
-     * @param array  $context Additional context
+     * @param string               $level   Log level
+     * @param string               $message Log message
+     * @param array<string, mixed> $context Additional context
      */
     private function log(string $level, string $message, array $context): void
     {

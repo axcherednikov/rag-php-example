@@ -33,7 +33,7 @@ interface ContextServiceInterface
     /**
      * Extract category from search results.
      *
-     * @param array $searchResults Array of search results with payload
+     * @param array<int, array<string, mixed>> $searchResults Array of search results with payload
      *
      * @return string|null Extracted category or null
      */

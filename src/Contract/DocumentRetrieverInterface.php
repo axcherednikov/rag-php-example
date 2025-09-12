@@ -20,7 +20,7 @@ interface DocumentRetrieverInterface
      * @param int         $limit          Maximum number of documents to retrieve
      * @param float       $threshold      Minimum relevance score threshold
      *
-     * @return array Array of retrieved documents with scores and metadata
+     * @return array<int, array<string, mixed>> Array of retrieved documents with scores and metadata
      *
      * @throws \App\Exception\RAGException If retrieval fails
      */
@@ -34,7 +34,7 @@ interface DocumentRetrieverInterface
     /**
      * Get collection statistics.
      *
-     * @return array Collection statistics including vector count and status
+     * @return array<string, mixed> Collection statistics including vector count and status
      */
     public function getCollectionStats(): array;
 }

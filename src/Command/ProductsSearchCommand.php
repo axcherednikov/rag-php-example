@@ -68,10 +68,22 @@ final class ProductsSearchCommand extends Command
         $this->embedder = pipeline(Task::Embeddings, 'onnx-community/Qwen3-Embedding-0.6B-ONNX');
     }
 
+    /**
+     * @return array<int, array<string, mixed>>
+     */
     private function searchProducts(string $query): array
     {
         $embedding = ($this->embedder)($query, pooling: 'mean', normalize: true);
-        $searchVector = new VectorStruct($embedding[0], 'default');
+
+        // Handle different embedding result types
+        if (is_array($embedding)) {
+            $vector = $embedding[0];
+        } else {
+            // For Tensor objects, convert to array and take first element
+            $vector = $embedding instanceof \Codewithkyrian\Transformers\Tensor\Tensor ? $embedding[0] : [];
+        }
+
+        $searchVector = new VectorStruct($vector, 'default');
         $searchRequest = new SearchRequest($searchVector);
         $searchRequest->setLimit(5)->setWithPayload(true)->setScoreThreshold(0.5);
 
@@ -80,6 +92,9 @@ final class ProductsSearchCommand extends Command
         return $response['result'] ?? [];
     }
 
+    /**
+     * @param array<int, array<string, mixed>> $results
+     */
     private function displayResults(array $results, string $query, SymfonyStyle $io): void
     {
         if (empty($results)) {

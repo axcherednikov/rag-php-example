@@ -14,6 +14,7 @@ use App\Contract\ContextServiceInterface;
  */
 final class ChatContextService implements ContextServiceInterface
 {
+    /** @var array<string, array<string, mixed>> */
     private array $contexts = [];
 
     /**
@@ -51,6 +52,8 @@ final class ChatContextService implements ContextServiceInterface
 
     /**
      * Определить категорию товара по результатам поиска.
+     *
+     * @param array<int, array<string, mixed>> $searchResults
      */
     public function extractCategoryFromResults(array $searchResults): ?string
     {

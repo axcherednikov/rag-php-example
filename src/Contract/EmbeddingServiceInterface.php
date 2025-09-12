@@ -17,7 +17,7 @@ interface EmbeddingServiceInterface
      *
      * @param string $text Input text to convert to vector
      *
-     * @return array Numerical vector representation of the text
+     * @return array<int, float> Numerical vector representation of the text
      *
      * @throws \App\Exception\RAGException If embedding generation fails
      */

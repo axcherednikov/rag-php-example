@@ -28,7 +28,7 @@ final readonly class SearchResult
     /**
      * Create from Qdrant search result array.
      *
-     * @param array $qdrantResult Raw result from Qdrant
+     * @param array<string, mixed> $qdrantResult Raw result from Qdrant
      *
      * @return self Typed search result
      */
@@ -105,7 +105,7 @@ final readonly class SearchResult
     /**
      * Convert to array for API responses.
      *
-     * @return array Associative array representation
+     * @return array<string, mixed> Associative array representation
      */
     public function toArray(): array
     {

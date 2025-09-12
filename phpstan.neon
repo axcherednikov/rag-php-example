@@ -4,6 +4,3 @@ parameters:
         - src
     bootstrapFiles:
         - vendor/autoload.php
-    ignoreErrors:
-        # Ignore Symfony framework internals
-        - '#Call to an undefined method Symfony\\Component\\DependencyInjection\\ContainerInterface::\w+\(\)#'

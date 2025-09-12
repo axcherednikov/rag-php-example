@@ -95,6 +95,9 @@ final class RefactoredRAGService implements RAGServiceInterface
         );
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function healthCheck(): array
     {
         $health = [
@@ -114,7 +117,7 @@ final class RefactoredRAGService implements RAGServiceInterface
     /**
      * Get comprehensive system statistics.
      *
-     * @return array System statistics including collection info and health status
+     * @return array<string, mixed> System statistics including collection info and health status
      */
     public function getSystemStats(): array
     {
@@ -130,9 +133,9 @@ final class RefactoredRAGService implements RAGServiceInterface
     /**
      * Update session context based on successful search results.
      *
-     * @param string $sessionId Session identifier
-     * @param array  $documents Retrieved documents
-     * @param string $userQuery Original query
+     * @param string                           $sessionId Session identifier
+     * @param array<int, array<string, mixed>> $documents Retrieved documents
+     * @param string                           $userQuery Original query
      */
     private function updateSessionContext(string $sessionId, array $documents, string $userQuery): void
     {

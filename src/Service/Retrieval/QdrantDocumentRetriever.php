@@ -70,8 +70,7 @@ final class QdrantDocumentRetriever implements DocumentRetrieverInterface
             }
 
             // Execute search
-            $response = $this->qdrantClient
-                ->collections(self::COLLECTION_NAME)
+            $response = $this->qdrantClient?->collections(self::COLLECTION_NAME)
                 ->points()
                 ->search($searchRequest);
 
@@ -81,12 +80,15 @@ final class QdrantDocumentRetriever implements DocumentRetrieverInterface
         }
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function getCollectionStats(): array
     {
         try {
             $this->ensureInitialized();
 
-            $info = $this->qdrantClient->collections(self::COLLECTION_NAME)->info();
+            $info = $this->qdrantClient?->collections(self::COLLECTION_NAME)->info();
 
             return [
                 'vectors_count' => $info['result']['vectors_count'] ?? 0,
@@ -112,7 +114,7 @@ final class QdrantDocumentRetriever implements DocumentRetrieverInterface
         try {
             $this->ensureInitialized();
 
-            $this->qdrantClient->collections(self::COLLECTION_NAME)->info();
+            $this->qdrantClient?->collections(self::COLLECTION_NAME)->info();
 
             return true;
         } catch (\Exception) {
