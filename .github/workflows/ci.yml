@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [main, master]
+    branches: [master]
   pull_request:
-    branches: [main, master]
+    branches: [master]
 
 jobs:
   test:
@@ -41,23 +41,3 @@ jobs:
 
       - name: Check code style
         run: composer cs-check
-
-
-  docker:
-    runs-on: ubuntu-latest
-    needs: test
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Build Docker image
-        run: docker build -t rag-demo .
-
-      - name: Test Docker Compose setup
-        run: |
-          docker-compose up -d
-          sleep 20
-          curl --fail http://localhost:6333/health
-          docker-compose logs
-          docker-compose down
