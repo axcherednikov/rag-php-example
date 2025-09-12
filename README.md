@@ -1,7 +1,7 @@
 # RAG с векторным поиском на PHP 🔍🤖
 
 [![Статус CI](https://github.com/axcherednikov/rag-php-example/workflows/CI/badge.svg)](https://github.com/axcherednikov/rag-php-example/actions)
-[![PHP 8.2+](https://img.shields.io/badge/PHP-8.2%2B-blue.svg)](https://php.net)
+[![PHP 8.3+](https://img.shields.io/badge/PHP-8.3%2B-blue.svg)](https://php.net)
 [![Лицензия MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 **Комплексная демонстрация современной RAG системы на PHP** с векторными эмбеддингами и локальными AI моделями для интеллектуального поиска товаров.
