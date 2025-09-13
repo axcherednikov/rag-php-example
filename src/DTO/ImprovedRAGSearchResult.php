@@ -34,7 +34,7 @@ final readonly class ImprovedRAGSearchResult
      */
     public function hasResults(): bool
     {
-        return !empty($this->results);
+        return [] !== $this->results;
     }
 
     /**
@@ -54,7 +54,7 @@ final readonly class ImprovedRAGSearchResult
      */
     public function getTopRelevanceScore(): ?float
     {
-        if (empty($this->results)) {
+        if ([] === $this->results) {
             return null;
         }
 
@@ -68,7 +68,7 @@ final readonly class ImprovedRAGSearchResult
      */
     public function getAverageRelevanceScore(): ?float
     {
-        if (empty($this->results)) {
+        if ([] === $this->results) {
             return null;
         }
 
@@ -130,7 +130,7 @@ final readonly class ImprovedRAGSearchResult
      */
     public function getPriceRange(): ?array
     {
-        if (empty($this->results)) {
+        if ([] === $this->results) {
             return null;
         }
 
@@ -192,7 +192,7 @@ final readonly class ImprovedRAGSearchResult
         }
 
         // Validate AI response
-        if (empty(trim($this->aiResponse))) {
+        if (in_array(trim($this->aiResponse), ['', '0'], true)) {
             throw new \InvalidArgumentException('AI response cannot be empty');
         }
     }

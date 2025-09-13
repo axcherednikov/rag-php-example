@@ -40,7 +40,7 @@ class LlamaService
      */
     public function generateConstrainedResponse(array $searchResults, string $originalQuery): string
     {
-        if (empty($searchResults)) {
+        if ([] === $searchResults) {
             return 'К сожалению, не найдено товаров соответствующих вашему запросу.';
         }
 
@@ -79,7 +79,7 @@ class LlamaService
     private function buildSearchAnalysisPrompt(string $query, ?string $context = null): string
     {
         $contextInfo = '';
-        if ($context) {
+        if (null !== $context && '' !== $context && '0' !== $context) {
             $contextInfo = "Previous context: User was looking for $context\n\n";
         }
 
@@ -201,7 +201,7 @@ PROMPT;
             $searchTerm = trim($matches[1]);
         }
 
-        return empty($searchTerm) ? $response : $searchTerm;
+        return '' === $searchTerm || '0' === $searchTerm ? $response : $searchTerm;
     }
 
     public function isAvailable(): bool

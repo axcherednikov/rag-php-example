@@ -9,6 +9,7 @@ use Codewithkyrian\Transformers\Pipelines\Pipeline;
 use function Codewithkyrian\Transformers\Pipelines\pipeline;
 
 use Codewithkyrian\Transformers\Pipelines\Task;
+use Codewithkyrian\Transformers\Tensor\Tensor;
 use Qdrant\Config;
 use Qdrant\Http\Transport;
 use Qdrant\Models\PointsStruct;
@@ -94,7 +95,7 @@ final class ProductsVectorizeCommand extends Command
     {
         try {
             $this->qdrantClient->collections(self::COLLECTION_NAME)->delete();
-        } catch (\Exception $e) {
+        } catch (\Exception) {
         }
 
         $createCollection = new CreateCollection();
@@ -116,7 +117,7 @@ final class ProductsVectorizeCommand extends Command
             }
         }
 
-        if (!empty($batch)) {
+        if ([] !== $batch) {
             $this->processBatch($batch);
         }
     }
@@ -153,7 +154,7 @@ final class ProductsVectorizeCommand extends Command
             if (is_array($embedding)) {
                 $vector = $embedding[0];
             } else {
-                $vector = $embedding instanceof \Codewithkyrian\Transformers\Tensor\Tensor ? $embedding[0] : [];
+                $vector = $embedding instanceof Tensor ? $embedding[0] : [];
             }
 
             $pointsStruct->addPoint(

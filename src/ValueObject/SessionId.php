@@ -81,7 +81,7 @@ final readonly class SessionId
      */
     private function validate(): void
     {
-        if (empty($this->value)) {
+        if ('' === $this->value || '0' === $this->value) {
             throw new \InvalidArgumentException('Session ID cannot be empty');
         }
 
@@ -90,7 +90,7 @@ final readonly class SessionId
         }
 
         // Ensure session ID contains only safe characters
-        if (!preg_match('/^[a-zA-Z0-9_\-\.]+$/', $this->value)) {
+        if (in_array(preg_match('/^[a-zA-Z0-9_\-\.]+$/', $this->value), [0, false], true)) {
             throw new \InvalidArgumentException('Session ID contains invalid characters');
         }
     }

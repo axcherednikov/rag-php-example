@@ -22,7 +22,7 @@ readonly class RAGSearchResult
 
     public function hasResults(): bool
     {
-        return !empty($this->documents);
+        return [] !== $this->documents;
     }
 
     public function getDocumentCount(): int
@@ -32,7 +32,7 @@ readonly class RAGSearchResult
 
     public function getTopScore(): ?float
     {
-        if (empty($this->documents)) {
+        if ([] === $this->documents) {
             return null;
         }
 

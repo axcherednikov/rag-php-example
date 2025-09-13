@@ -41,7 +41,7 @@ final class ProductsChatCommand extends Command
         while (true) {
             $query = $io->ask('Что вы ищете? ("выход" для завершения)');
 
-            if (!$query || in_array(strtolower(trim($query)), ['выход', 'exit', 'quit', 'q'])) {
+            if (!$query || in_array(strtolower(trim((string) $query)), ['выход', 'exit', 'quit', 'q'])) {
                 break;
             }
 
@@ -89,7 +89,11 @@ final class ProductsChatCommand extends Command
         $io->section('Найденные товары');
 
         foreach ($results as $i => $result) {
-            if (!isset($result['payload']) || !isset($result['score'])) {
+            if (!isset($result['payload'])) {
+                continue;
+            }
+
+            if (!isset($result['score'])) {
                 continue;
             }
 

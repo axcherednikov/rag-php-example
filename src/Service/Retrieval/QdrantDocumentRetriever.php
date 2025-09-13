@@ -43,7 +43,7 @@ final class QdrantDocumentRetriever implements DocumentRetrieverInterface
         int $limit = 5,
         float $threshold = 0.3,
     ): array {
-        if (empty(trim($optimizedQuery))) {
+        if (in_array(trim($optimizedQuery), ['', '0'], true)) {
             throw RAGException::retrievalFailed('Search query cannot be empty');
         }
 
@@ -62,7 +62,7 @@ final class QdrantDocumentRetriever implements DocumentRetrieverInterface
                 ->setScoreThreshold($threshold);
 
             // Add category filter if specified
-            if ($categoryFilter) {
+            if (null !== $categoryFilter && '' !== $categoryFilter && '0' !== $categoryFilter) {
                 $filter = new Filter();
                 $condition = new MatchString('category', $categoryFilter);
                 $filter->addMust($condition);

@@ -1,6 +1,9 @@
 <?php
 
+use Symfony\Bundle\FrameworkBundle\FrameworkBundle;
+use Symfony\Bundle\MakerBundle\MakerBundle;
+
 return [
-    Symfony\Bundle\FrameworkBundle\FrameworkBundle::class => ['all' => true],
-    Symfony\Bundle\MakerBundle\MakerBundle::class => ['dev' => true],
+    FrameworkBundle::class => ['all' => true],
+    MakerBundle::class => ['dev' => true],
 ];

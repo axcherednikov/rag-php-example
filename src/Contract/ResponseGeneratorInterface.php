@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Contract;
 
+use App\Exception\RAGException;
+
 /**
  * Interface for response generation stage of RAG pipeline.
  *
@@ -20,7 +22,7 @@ interface ResponseGeneratorInterface
      *
      * @return string Generated natural language response
      *
-     * @throws \App\Exception\RAGException If response generation fails
+     * @throws RAGException If response generation fails
      */
     public function generateResponse(array $documents, string $originalQuery): string;
 }

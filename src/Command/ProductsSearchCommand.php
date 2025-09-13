@@ -9,6 +9,7 @@ use Codewithkyrian\Transformers\Pipelines\Pipeline;
 use function Codewithkyrian\Transformers\Pipelines\pipeline;
 
 use Codewithkyrian\Transformers\Pipelines\Task;
+use Codewithkyrian\Transformers\Tensor\Tensor;
 use Qdrant\Config;
 use Qdrant\Http\Transport;
 use Qdrant\Models\Request\SearchRequest;
@@ -50,7 +51,7 @@ final class ProductsSearchCommand extends Command
         try {
             $this->initializeServices();
             $results = $this->searchProducts($query);
-            $this->displayResults($results, $query, $io);
+            $this->displayResults($results, $io);
 
             return Command::SUCCESS;
         } catch (\Exception $e) {
@@ -78,7 +79,7 @@ final class ProductsSearchCommand extends Command
         if (is_array($embedding)) {
             $vector = $embedding[0];
         } else {
-            $vector = $embedding instanceof \Codewithkyrian\Transformers\Tensor\Tensor ? $embedding[0] : [];
+            $vector = $embedding instanceof Tensor ? $embedding[0] : [];
         }
 
         $searchVector = new VectorStruct($vector, 'default');
@@ -93,9 +94,9 @@ final class ProductsSearchCommand extends Command
     /**
      * @param array<int, array<string, mixed>> $results
      */
-    private function displayResults(array $results, string $query, SymfonyStyle $io): void
+    private function displayResults(array $results, SymfonyStyle $io): void
     {
-        if (empty($results)) {
+        if ([] === $results) {
             $io->warning('No products found');
 
             return;

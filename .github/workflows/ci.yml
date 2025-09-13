@@ -41,3 +41,6 @@ jobs:
 
       - name: Check code style
         run: composer cs-check
+
+      - name: Run Rector
+        run: composer rector-check

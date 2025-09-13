@@ -10,16 +10,16 @@ use App\Contract\QueryProcessorInterface;
 use App\Contract\ResponseGeneratorInterface;
 use App\DTO\RAGSearchResult;
 
-final class RefactoredRAGService implements RAGServiceInterface
+final readonly class RefactoredRAGService implements RAGServiceInterface
 {
     private const DEFAULT_LIMIT = 5;
     private const DEFAULT_THRESHOLD = 0.3;
 
     public function __construct(
-        private readonly QueryProcessorInterface $queryProcessor,
-        private readonly DocumentRetrieverInterface $documentRetriever,
-        private readonly ResponseGeneratorInterface $responseGenerator,
-        private readonly ContextServiceInterface $contextService,
+        private QueryProcessorInterface $queryProcessor,
+        private DocumentRetrieverInterface $documentRetriever,
+        private ResponseGeneratorInterface $responseGenerator,
+        private ContextServiceInterface $contextService,
     ) {
     }
 
@@ -41,7 +41,7 @@ final class RefactoredRAGService implements RAGServiceInterface
             self::DEFAULT_THRESHOLD
         );
 
-        if (empty($documents) && null !== $categoryFilter) {
+        if ([] === $documents && null !== $categoryFilter) {
             $documents = $this->documentRetriever->retrieveDocuments(
                 $optimizedQuery,
                 null,
@@ -83,13 +83,11 @@ final class RefactoredRAGService implements RAGServiceInterface
      */
     public function getSystemStats(): array
     {
-        $stats = [
+        return [
             'health' => $this->healthCheck(),
             'collection' => $this->documentRetriever->getCollectionStats(),
             'active_sessions' => $this->contextService->getActiveSessionsCount(),
         ];
-
-        return $stats;
     }
 
     /**
@@ -97,7 +95,7 @@ final class RefactoredRAGService implements RAGServiceInterface
      */
     private function updateSessionContext(string $sessionId, array $documents, string $userQuery): void
     {
-        if (empty($documents)) {
+        if ([] === $documents) {
             return;
         }
 

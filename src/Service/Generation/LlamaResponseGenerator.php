@@ -14,22 +14,22 @@ use App\Service\LlamaService;
  * Creates contextual responses based on retrieved documents
  * using constrained generation to prevent hallucination.
  */
-final class LlamaResponseGenerator implements ResponseGeneratorInterface
+final readonly class LlamaResponseGenerator implements ResponseGeneratorInterface
 {
     private const DEFAULT_EMPTY_RESPONSE = 'К сожалению, не найдено товаров соответствующих вашему запросу. Попробуйте изменить формулировку.';
 
     public function __construct(
-        private readonly LlamaService $llamaService,
+        private LlamaService $llamaService,
     ) {
     }
 
     public function generateResponse(array $documents, string $originalQuery): string
     {
-        if (empty($documents)) {
+        if ([] === $documents) {
             return self::DEFAULT_EMPTY_RESPONSE;
         }
 
-        if (empty(trim($originalQuery))) {
+        if (in_array(trim($originalQuery), ['', '0'], true)) {
             throw RAGException::generationFailed('Original query cannot be empty');
         }
 
@@ -37,7 +37,7 @@ final class LlamaResponseGenerator implements ResponseGeneratorInterface
             $response = $this->llamaService->generateConstrainedResponse($documents, $originalQuery);
 
             // Validate generated response
-            if (empty(trim($response))) {
+            if (in_array(trim($response), ['', '0'], true)) {
                 return $this->generateFallbackResponse($documents);
             }
 
@@ -59,7 +59,7 @@ final class LlamaResponseGenerator implements ResponseGeneratorInterface
      */
     private function generateFallbackResponse(array $documents): string
     {
-        if (empty($documents)) {
+        if ([] === $documents) {
             return self::DEFAULT_EMPTY_RESPONSE;
         }
 

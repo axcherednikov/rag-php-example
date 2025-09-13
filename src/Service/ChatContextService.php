@@ -57,7 +57,7 @@ final class ChatContextService implements ContextServiceInterface
      */
     public function extractCategoryFromResults(array $searchResults): ?string
     {
-        if (empty($searchResults)) {
+        if ([] === $searchResults) {
             return null;
         }
 

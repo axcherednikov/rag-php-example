@@ -61,14 +61,18 @@
         ],
         "check": [
             "@phpstan",
-            "@cs-check"
+            "@cs-check",
+            "@rector-check"
         ],
         "fix": [
-            "@cs-fix"
+            "@cs-fix",
+            "@rector-fix"
         ],
         "phpstan": "phpstan analyse src --level=8 --no-progress",
         "cs-check": "php-cs-fixer fix --dry-run --diff",
-        "cs-fix": "php-cs-fixer fix"
+        "cs-fix": "php-cs-fixer fix",
+        "rector-check": "rector process --dry-run",
+        "rector-fix": "rector process"
     },
     "conflict": {
         "symfony/symfony": "*"
@@ -80,8 +84,9 @@
         }
     },
     "require-dev": {
-        "phpstan/phpstan": "^1.12.28",
         "friendsofphp/php-cs-fixer": "^3.87.2",
+        "phpstan/phpstan": "^1.12.28",
+        "rector/rector": "^1.2",
         "symfony/maker-bundle": "^1.64"
     }
 }

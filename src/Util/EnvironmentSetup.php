@@ -21,12 +21,12 @@ final class EnvironmentSetup
     public static function configureMLEnvironment(): void
     {
         // Prevent OpenMP duplicate library loading issues
-        if (!getenv('KMP_DUPLICATE_LIB_OK')) {
+        if (in_array(getenv('KMP_DUPLICATE_LIB_OK'), ['', '0'], true) || false === getenv('KMP_DUPLICATE_LIB_OK')) {
             putenv('KMP_DUPLICATE_LIB_OK=TRUE');
         }
 
         // Set other ML-related environment variables if needed
-        if (!getenv('OMP_NUM_THREADS')) {
+        if (in_array(getenv('OMP_NUM_THREADS'), ['', '0'], true) || false === getenv('OMP_NUM_THREADS')) {
             putenv('OMP_NUM_THREADS=1');
         }
     }

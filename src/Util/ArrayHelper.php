@@ -153,7 +153,7 @@ final class ArrayHelper
      */
     public static function getNumericStats(array $numbers): array
     {
-        if (empty($numbers)) {
+        if ([] === $numbers) {
             return [
                 'count' => 0,
                 'min' => null,
@@ -165,7 +165,7 @@ final class ArrayHelper
 
         $numbers = array_filter($numbers, 'is_numeric');
 
-        if (empty($numbers)) {
+        if ([] === $numbers) {
             return [
                 'count' => 0,
                 'min' => null,

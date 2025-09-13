@@ -41,16 +41,16 @@ final class RAGDemoCommand extends Command
         }
         $interactive = $input->getOption('interactive');
         $query = $input->getOption('query');
-
         if ($interactive) {
             return $this->runInteractiveMode($io);
-        } elseif ($query) {
-            return $this->runSingleQuery($query, $io);
-        } else {
-            $this->showUsageExamples($io);
-
-            return Command::SUCCESS;
         }
+
+        if ($query) {
+            return $this->runSingleQuery($query, $io);
+        }
+        $this->showUsageExamples($io);
+
+        return Command::SUCCESS;
     }
 
     private function checkServices(SymfonyStyle $io): bool
@@ -85,7 +85,7 @@ final class RAGDemoCommand extends Command
         while (true) {
             $query = $io->ask('Ваш запрос ("выход" для завершения)');
 
-            if (!$query || in_array(strtolower(trim($query)), ['выход', 'exit', 'quit', 'q'])) {
+            if (!$query || in_array(strtolower(trim((string) $query)), ['выход', 'exit', 'quit', 'q'])) {
                 break;
             }
 

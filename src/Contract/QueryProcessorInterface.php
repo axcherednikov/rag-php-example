@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Contract;
 
+use App\Exception\RAGException;
+
 /**
  * Interface for query processing stage of RAG pipeline.
  *
@@ -20,7 +22,7 @@ interface QueryProcessorInterface
      *
      * @return string Optimized search query for vector database
      *
-     * @throws \App\Exception\RAGException If query processing fails
+     * @throws RAGException If query processing fails
      */
     public function processQuery(string $userQuery, ?string $context = null): string;
 }

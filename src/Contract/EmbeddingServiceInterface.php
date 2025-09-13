@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Contract;
 
+use App\Exception\RAGException;
+
 /**
  * Interface for text embedding generation.
  *
@@ -19,7 +21,7 @@ interface EmbeddingServiceInterface
      *
      * @return array<int, float> Numerical vector representation of the text
      *
-     * @throws \App\Exception\RAGException If embedding generation fails
+     * @throws RAGException If embedding generation fails
      */
     public function embed(string $text): array;
 

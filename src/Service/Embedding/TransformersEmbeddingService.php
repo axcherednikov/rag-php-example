@@ -45,7 +45,7 @@ final class TransformersEmbeddingService implements EmbeddingServiceInterface
 
             $result = ($this->embedder)($text, pooling: 'mean', normalize: true);
 
-            if (!is_array($result) || empty($result)) {
+            if (!is_array($result) || [] === $result) {
                 throw RAGException::serviceUnavailable('Embedding generation returned empty result');
             }
 

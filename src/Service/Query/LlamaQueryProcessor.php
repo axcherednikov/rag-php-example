@@ -14,16 +14,16 @@ use App\Service\LlamaService;
  * Handles natural language understanding and query optimization
  * using local Llama models through Ollama API.
  */
-final class LlamaQueryProcessor implements QueryProcessorInterface
+final readonly class LlamaQueryProcessor implements QueryProcessorInterface
 {
     public function __construct(
-        private readonly LlamaService $llamaService,
+        private LlamaService $llamaService,
     ) {
     }
 
     public function processQuery(string $userQuery, ?string $context = null): string
     {
-        if (empty(trim($userQuery))) {
+        if (in_array(trim($userQuery), ['', '0'], true)) {
             throw RAGException::queryProcessingFailed('Query cannot be empty');
         }
 
@@ -31,7 +31,7 @@ final class LlamaQueryProcessor implements QueryProcessorInterface
             $optimizedQuery = $this->llamaService->analyzeSearchQuery($userQuery, $context);
 
             // Validate the result
-            if (empty(trim($optimizedQuery))) {
+            if (in_array(trim($optimizedQuery), ['', '0'], true)) {
                 throw RAGException::queryProcessingFailed('LLM returned empty optimization result');
             }
 

@@ -11,13 +11,13 @@ use App\Contract\LoggerInterface;
  *
  * Writes log messages to files with structured format and rotation support.
  */
-final class FileLogger implements LoggerInterface
+final readonly class FileLogger implements LoggerInterface
 {
     private const LOG_FORMAT = '[%s] %s: %s %s'.PHP_EOL;
 
     public function __construct(
-        private readonly string $logDirectory = 'var/log',
-        private readonly string $logFile = 'app.log',
+        private string $logDirectory = 'var/log',
+        private string $logFile = 'app.log',
     ) {
         $this->ensureLogDirectoryExists();
     }
@@ -72,7 +72,7 @@ final class FileLogger implements LoggerInterface
     private function log(string $level, string $message, array $context): void
     {
         $timestamp = date('Y-m-d H:i:s');
-        $contextJson = empty($context) ? '' : json_encode($context, JSON_UNESCAPED_UNICODE);
+        $contextJson = [] === $context ? '' : json_encode($context, JSON_UNESCAPED_UNICODE);
 
         $logEntry = sprintf(
             self::LOG_FORMAT,

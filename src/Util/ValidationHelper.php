@@ -22,7 +22,7 @@ final class ValidationHelper
      */
     public static function validateNotEmpty(string $value, string $fieldName = 'value'): void
     {
-        if (empty(trim($value))) {
+        if (in_array(trim($value), ['', '0'], true)) {
             throw new \InvalidArgumentException(ucfirst($fieldName).' cannot be empty');
         }
     }
@@ -87,7 +87,7 @@ final class ValidationHelper
      */
     public static function validateArrayNotEmpty(array $value, string $fieldName = 'array'): void
     {
-        if (empty($value)) {
+        if ([] === $value) {
             throw new \InvalidArgumentException(ucfirst($fieldName).' cannot be empty');
         }
     }
@@ -118,7 +118,7 @@ final class ValidationHelper
     {
         $normalized = preg_replace('/\s+/', ' ', $value);
 
-        return trim($normalized ?: $value);
+        return trim((string) ('' !== $normalized && '0' !== $normalized && [] !== $normalized ? $normalized : $value));
     }
 
     /**
@@ -134,6 +134,6 @@ final class ValidationHelper
         $sanitized = preg_replace('/[<>"\']/', '', $value);
 
         // Normalize whitespace
-        return self::normalizeWhitespace($sanitized ?: $value);
+        return self::normalizeWhitespace($sanitized ?? $value);
     }
 }

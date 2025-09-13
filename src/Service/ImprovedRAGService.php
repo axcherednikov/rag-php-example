@@ -11,6 +11,7 @@ use Codewithkyrian\Transformers\Pipelines\Pipeline;
 use function Codewithkyrian\Transformers\Pipelines\pipeline;
 
 use Codewithkyrian\Transformers\Pipelines\Task;
+use Codewithkyrian\Transformers\Tensor\Tensor;
 use Qdrant\Config;
 use Qdrant\Http\Transport;
 use Qdrant\Models\Filter\Condition\MatchString;
@@ -46,16 +47,16 @@ class ImprovedRAGService implements RAGServiceInterface
 
         $context = $this->contextService->getSearchContext($sessionId);
         $optimizedQuery = $this->processQuery($userQuery, $context);
-        $categoryFilter = $context ?: $this->contextService->inferCategoryFromQuery($userQuery);
+        $categoryFilter = null !== $context && '' !== $context && '0' !== $context ? $context : $this->contextService->inferCategoryFromQuery($userQuery);
         $documents = $this->retrieveDocuments($optimizedQuery, $categoryFilter);
 
-        if (empty($documents) && $categoryFilter) {
+        if ([] === $documents && $categoryFilter) {
             $documents = $this->retrieveDocuments($optimizedQuery, null);
         }
 
-        if (!empty($documents)) {
+        if ([] !== $documents) {
             $category = $this->contextService->extractCategoryFromResults($documents);
-            if ($category) {
+            if (null !== $category && '' !== $category && '0' !== $category) {
                 $this->contextService->setSearchContext($sessionId, $category, $userQuery);
             }
         }
@@ -73,7 +74,7 @@ class ImprovedRAGService implements RAGServiceInterface
     {
         try {
             return $this->llamaService->analyzeSearchQuery($userQuery, $context);
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             return $userQuery;
         }
     }
@@ -88,7 +89,7 @@ class ImprovedRAGService implements RAGServiceInterface
         }
 
         $embedding = ($this->embedder)($optimizedQuery, pooling: 'mean', normalize: true);
-        $queryVector = is_array($embedding) ? $embedding[0] : ($embedding instanceof \Codewithkyrian\Transformers\Tensor\Tensor ? $embedding[0] : []);
+        $queryVector = is_array($embedding) ? $embedding[0] : ($embedding instanceof Tensor ? $embedding[0] : []);
 
         $searchVector = new VectorStruct($queryVector, 'default');
         $searchRequest = new SearchRequest($searchVector);
@@ -97,7 +98,7 @@ class ImprovedRAGService implements RAGServiceInterface
             ->setWithPayload(true)
             ->setScoreThreshold(self::DEFAULT_THRESHOLD);
 
-        if ($categoryFilter) {
+        if (null !== $categoryFilter && '' !== $categoryFilter && '0' !== $categoryFilter) {
             $filter = new Filter();
             $condition = new MatchString('category', $categoryFilter);
             $filter->addMust($condition);
@@ -121,13 +122,13 @@ class ImprovedRAGService implements RAGServiceInterface
      */
     private function generateResponse(array $documents, string $originalQuery): string
     {
-        if (empty($documents)) {
+        if ([] === $documents) {
             return 'К сожалению, не найдено товаров соответствующих вашему запросу. Попробуйте изменить формулировку.';
         }
 
         try {
             return $this->llamaService->generateConstrainedResponse($documents, $originalQuery);
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             $count = count($documents);
             $topProduct = $documents[0]['payload']['name'] ?? 'товар';
 
@@ -141,7 +142,7 @@ class ImprovedRAGService implements RAGServiceInterface
             return;
         }
 
-        if (!getenv('KMP_DUPLICATE_LIB_OK')) {
+        if (in_array(getenv('KMP_DUPLICATE_LIB_OK'), ['', '0'], true) || false === getenv('KMP_DUPLICATE_LIB_OK')) {
             putenv('KMP_DUPLICATE_LIB_OK=TRUE');
         }
 

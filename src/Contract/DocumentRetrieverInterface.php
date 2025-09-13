@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Contract;
 
+use App\Exception\RAGException;
+
 /**
  * Interface for document retrieval stage of RAG pipeline.
  *
@@ -22,7 +24,7 @@ interface DocumentRetrieverInterface
      *
      * @return array<int, array<string, mixed>> Array of retrieved documents with scores and metadata
      *
-     * @throws \App\Exception\RAGException If retrieval fails
+     * @throws RAGException If retrieval fails
      */
     public function retrieveDocuments(
         string $optimizedQuery,

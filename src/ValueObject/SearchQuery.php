@@ -43,7 +43,7 @@ final readonly class SearchQuery
      */
     public function isEmpty(): bool
     {
-        return empty($this->value);
+        return '' === $this->value || '0' === $this->value;
     }
 
     /**
