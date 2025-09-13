@@ -28,21 +28,8 @@ final class RAGDemoCommand extends Command
     protected function configure(): void
     {
         $this
-            ->setDescription('Демонстрация улучшенной RAG архитектуры с четким разделением этапов')
             ->addOption('query', null, InputOption::VALUE_REQUIRED, 'Поисковый запрос для демонстрации')
-            ->addOption('interactive', 'i', InputOption::VALUE_NONE, 'Интерактивный режим чата')
-            ->setHelp(<<<HELP
-Эта команда демонстрирует улучшенную RAG (Retrieval-Augmented Generation) архитектуру
-с четким разделением на 3 этапа согласно рекомендации куратора:
-
-1. 🧠 Query Processing - анализ и векторизация запроса
-2. 🔍 Retrieval - поиск релевантных документов в Qdrant
-3. ✨ Generation - строго ограниченная генерация ответа только на основе найденных товаров
-
-Примеры использования:
-  php bin/console rag:demo --query "процессор AMD для игр"
-  php bin/console rag:demo --interactive
-HELP);
+            ->addOption('interactive', 'i', InputOption::VALUE_NONE, 'Интерактивный режим чата');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -103,7 +90,7 @@ HELP);
             }
 
             try {
-                $sessionId = 'interactive_'.time(); // Уникальный ID для интерактивной сессии
+                $sessionId = 'interactive_'.time();
                 $result = $this->ragService->searchWithContext($query, $sessionId);
                 $this->displayCompactResult($result, $io);
             } catch (\Exception $e) {
@@ -161,7 +148,6 @@ HELP);
     private function showUsageExamples(SymfonyStyle $io): void
     {
         $io->section('Примеры использования');
-
         $examples = [
             'Разовый поиск' => 'php bin/console rag:demo --query "процессор AMD для игр"',
             'Интерактивный чат' => 'php bin/console rag:demo --interactive',

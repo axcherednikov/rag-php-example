@@ -75,11 +75,9 @@ final class ProductsSearchCommand extends Command
     {
         $embedding = ($this->embedder)($query, pooling: 'mean', normalize: true);
 
-        // Handle different embedding result types
         if (is_array($embedding)) {
             $vector = $embedding[0];
         } else {
-            // For Tensor objects, convert to array and take first element
             $vector = $embedding instanceof \Codewithkyrian\Transformers\Tensor\Tensor ? $embedding[0] : [];
         }
 

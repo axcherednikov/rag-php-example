@@ -150,11 +150,9 @@ final class ProductsVectorizeCommand extends Command
                 'description' => $product['description'],
             ];
 
-            // Handle different embedding result types
             if (is_array($embedding)) {
                 $vector = $embedding[0];
             } else {
-                // For Tensor objects, convert to array and take first element
                 $vector = $embedding instanceof \Codewithkyrian\Transformers\Tensor\Tensor ? $embedding[0] : [];
             }
 

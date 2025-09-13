@@ -16,23 +16,16 @@ class LlamaService
     ) {
     }
 
-    /**
-     * Анализирует русский поисковый запрос с учетом контекста и возвращает оптимизированный английский термин.
-     */
     public function analyzeSearchQuery(string $russianQuery, ?string $previousContext = null): string
     {
         $prompt = $this->buildSearchAnalysisPrompt($russianQuery, $previousContext);
 
-        // Используем более мощную модель для лучшего анализа запросов
         $response = $this->generateText($prompt, 'llama3.2:3b');
 
-        // Извлекаем только чистый поисковый термин из ответа
         return $this->extractSearchTerm($response);
     }
 
     /**
-     * Генерирует персонализированный ответ на основе результатов поиска.
-     *
      * @param array<int, array<string, mixed>> $searchResults
      */
     public function generateProductResponse(array $searchResults, string $originalQuery): string
@@ -43,9 +36,6 @@ class LlamaService
     }
 
     /**
-     * НОВЫЙ МЕТОД: Генерирует строго ограниченный ответ только на основе найденных товаров
-     * LLM НЕ должна ничего добавлять от себя, работает только с предоставленным контекстом
-     *
      * @param array<int, array<string, mixed>> $searchResults
      */
     public function generateConstrainedResponse(array $searchResults, string $originalQuery): string
@@ -59,13 +49,9 @@ class LlamaService
         return $this->generateText($prompt);
     }
 
-    /**
-     * Базовый метод для генерации текста через Ollama API.
-     */
     private function generateText(string $prompt, string $model = self::DEFAULT_MODEL): string
     {
         try {
-            // Очищаем строку от некорректных UTF-8 символов
             $cleanPrompt = mb_convert_encoding($prompt, 'UTF-8', 'UTF-8');
 
             $response = $this->httpClient->request('POST', self::OLLAMA_URL.'/api/generate', [
@@ -74,9 +60,9 @@ class LlamaService
                     'prompt' => $cleanPrompt,
                     'stream' => false,
                     'options' => [
-                        'temperature' => 0.1, // Низкая температура для более точных ответов
+                        'temperature' => 0.1,
                         'top_p' => 0.9,
-                        'num_predict' => 500, // Увеличиваем лимит для более полных ответов
+                        'num_predict' => 500,
                     ],
                 ],
                 'timeout' => 30,
@@ -90,9 +76,6 @@ class LlamaService
         }
     }
 
-    /**
-     * Создает промпт для анализа поискового запроса с учетом контекста.
-     */
     private function buildSearchAnalysisPrompt(string $query, ?string $context = null): string
     {
         $contextInfo = '';
@@ -122,8 +105,6 @@ PROMPT;
     }
 
     /**
-     * Создает промпт для генерации ответа пользователю.
-     *
      * @param array<int, array<string, mixed>> $searchResults
      */
     private function buildResponsePrompt(array $searchResults, string $originalQuery): string
@@ -154,9 +135,6 @@ PROMPT;
     }
 
     /**
-     * УЛУЧШЕННЫЙ ПРОМПТ: Строго ограниченный промпт для RAG с улучшенной логикой
-     * LLM должна работать ТОЛЬКО с предоставленными товарами, ничего не добавлять от себя.
-     *
      * @param array<int, array<string, mixed>> $searchResults
      */
     private function buildConstrainedResponsePrompt(array $searchResults, string $originalQuery): string
@@ -199,19 +177,13 @@ $resultsText
 PROMPT;
     }
 
-    /**
-     * Извлекает чистый поисковый термин из ответа модели.
-     */
     private function extractSearchTerm(string $response): string
     {
-        // Убираем лишние символы и берем первую строку
         $lines = explode("\n", trim($response));
         $searchTerm = trim($lines[0]);
 
-        // Убираем кавычки и лишние символы
         $searchTerm = trim($searchTerm, '"\'');
 
-        // Убираем различные префиксы которые может добавить LLM
         $prefixes = [
             '/^(Search query:\s*|Answer:\s*|Result:\s*|English term:\s*)/i',
             '/^(Translation:\s*|English:\s*|Translate:\s*)/i',
@@ -225,18 +197,13 @@ PROMPT;
 
         $searchTerm = trim($searchTerm, '"\'');
 
-        // Если все еще содержит лишний текст, берем только первую часть до разделителей
         if (preg_match('/^([^.!?\n]+)/', $searchTerm, $matches)) {
             $searchTerm = trim($matches[1]);
         }
 
-        // Если пустой ответ, возвращаем исходный
         return empty($searchTerm) ? $response : $searchTerm;
     }
 
-    /**
-     * Проверяет доступность Ollama сервера.
-     */
     public function isAvailable(): bool
     {
         try {
@@ -251,8 +218,6 @@ PROMPT;
     }
 
     /**
-     * Получает список доступных моделей.
-     *
      * @return array<int, string>
      */
     public function getAvailableModels(): array
