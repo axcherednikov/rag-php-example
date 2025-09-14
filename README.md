@@ -126,8 +126,8 @@ rag-vectors-presentation/
 ├── src/
 │   ├── Command/          # Консольные команды для демо
 │   ├── Service/          # Основная бизнес-логика
-│   │   ├── ImprovedRAGService.php    # Главная RAG реализация
-│   │   ├── OllamaEmbeddingService.php # Векторные эмбеддинги
+│   │   ├── RAGService.php            # Главная RAG реализация
+│   │   ├── EmbeddingConfigService.php # Векторные эмбеддинги
 │   │   └── LlamaService.php          # Интеграция с LLM
 │   ├── DTO/              # Объекты передачи данных
 │   └── Exception/        # Кастомные исключения
@@ -167,19 +167,16 @@ rag-vectors-presentation/
 
 ### Смена модели
 
-Чтобы использовать другую модель, измените её в файлах:
+Чтобы использовать другую модель, измените её в файле:
 
-1. **src/Service/Embedding/TransformersEmbeddingService.php** (строка ~30)
-2. **src/Service/ImprovedRAGService.php** (строка ~200)
-3. **src/Command/ProductsSearchCommand.php** (строка ~68)
-4. **src/Command/ProductsVectorizeCommand.php** (строка ~109)
+1. **src/Service/EmbeddingConfigService.php** (константа EMBEDDING_MODEL)
 
 ```php
-// Заменить эту строку:
-$this->embedder = pipeline(Task::Embeddings, 'onnx-community/Qwen3-Embedding-0.6B-ONNX');
+// В src/Service/EmbeddingConfigService.php заменить:
+private const string EMBEDDING_MODEL = 'onnx-community/Qwen3-Embedding-0.6B-ONNX';
 
 // На выбранную модель:
-$this->embedder = pipeline(Task::Embeddings, 'onnx-community/all-MiniLM-L6-v2');
+private const string EMBEDDING_MODEL = 'onnx-community/all-MiniLM-L6-v2';
 ```
 
 > ⚠️ **Важно**: При смене модели нужно заново проиндексировать товары командой `php bin/console products:vectorize`
@@ -235,26 +232,29 @@ curl http://localhost:11434/api/tags
 
 ```php
 // Прямое использование сервиса
-$ragService = $container->get(ImprovedRAGService::class);
-$result = $ragService->search("мощная видеокарта для игр");
+$ragService = $container->get(RAGService::class);
+$result = $ragService->searchWithContext("мощная видеокарта для игр", "session_id");
 
-echo "Запрос: " . $result->query . "\n";
-echo "Ответ: " . $result->response . "\n";
-foreach ($result->products as $product) {
-    echo "- {$product['name']} (релевантность: {$product['similarity']})\n";
+echo "Исходный запрос: " . $result->originalQuery . "\n";
+echo "Оптимизированный запрос: " . $result->optimizedQuery . "\n";
+echo "AI Ответ: " . $result->aiResponse . "\n";
+foreach ($result->documents as $doc) {
+    echo "- {$doc['payload']['name']} (релевантность: " . round($doc['score'] * 100, 1) . "%)\n";
 }
 ```
 
 ### Кастомная RAG реализация
 
 ```php
-use App\Service\RAGServiceInterface;
+use App\Service\RAGService;
+use App\DTO\RAGSearchResult;
 
-class MyCustomRAGService implements RAGServiceInterface
+class MyCustomRAGService extends RAGService
 {
-    public function search(string $userQuery): RAGSearchResult
+    public function searchWithContext(string $userQuery, string $sessionId): RAGSearchResult
     {
-        // Ваша логика RAG здесь
+        // Ваша кастомная логика RAG здесь
+        return parent::searchWithContext($userQuery, $sessionId);
     }
 }
 ```

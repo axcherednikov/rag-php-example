@@ -138,6 +138,20 @@ final class RAGDemoCommand extends Command
     private function displayCompactResult(RAGSearchResult $result, SymfonyStyle $io): void
     {
         if ($result->hasResults()) {
+            // Показываем найденные товары компактно
+            $io->text('Найдено товаров: '.$result->getResultCount());
+
+            $tableData = array_map(function (array $doc, int $i): array {
+                $payload = $doc['payload'];
+                $price = number_format($payload['price'] / 100, 0, '.', ' ').' ₽';
+                $relevance = round($doc['score'] * 100, 1).'%';
+
+                return [$i + 1, $payload['name'], $payload['brand'], $price, $relevance];
+            }, $result->documents, array_keys($result->documents));
+
+            $io->table(['#', 'Товар', 'Бренд', 'Цена', 'Релевантность'], $tableData);
+
+            // AI Рекомендация
             $io->text('AI Рекомендация:');
             $io->block($result->aiResponse, null, 'fg=green');
         } else {

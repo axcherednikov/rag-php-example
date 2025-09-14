@@ -68,7 +68,8 @@ final class ProductsChatCommand extends Command
             if ($result->hasResults()) {
                 $this->displayChatResults($result->documents, $result->aiResponse, $io);
             } else {
-                $io->warning('Товары не найдены');
+                $io->warning('Товары не найдены в базе данных');
+                $io->text('Попробуйте изменить формулировку запроса или использовать другие ключевые слова.');
             }
         } catch (\Exception $e) {
             $io->error('Ошибка поиска: '.$e->getMessage());
@@ -80,12 +81,27 @@ final class ProductsChatCommand extends Command
      */
     private function displayChatResults(array $results, string $aiResponse, SymfonyStyle $io): void
     {
-        $io->section('Рекомендации');
+        $io->section('Найдено товаров в БД: '.count($results));
 
+        $tableData = [];
+        foreach ($results as $i => $result) {
+            $payload = $result['payload'] ?? [];
+            $score = $result['score'] ?? 0;
+            $name = $payload['name'] ?? 'Неизвестно';
+            $brand = $payload['brand'] ?? 'Н/Д';
+            $price = isset($payload['price']) ? number_format($payload['price'] / 100, 0, '.', ' ').' ₽' : 'Н/Д';
+            $relevance = round($score * 100, 1).'%';
+
+            $tableData[] = [$i + 1, $name, $brand, $price, $relevance];
+        }
+
+        $io->table(['#', 'Товар', 'Бренд', 'Цена', 'Релевантность'], $tableData);
+
+        $io->section('AI Рекомендация');
         $cleanResponse = strip_tags(str_replace(['**', '*', '#', '`'], '', $aiResponse));
         $io->text($cleanResponse);
 
-        $io->section('Найденные товары');
+        $io->section('Подробное описание товаров');
 
         foreach ($results as $i => $result) {
             if (!isset($result['payload'])) {
