@@ -4,12 +4,7 @@ declare(strict_types=1);
 
 namespace App\Command;
 
-use Codewithkyrian\Transformers\Pipelines\Pipeline;
-
-use function Codewithkyrian\Transformers\Pipelines\pipeline;
-
-use Codewithkyrian\Transformers\Pipelines\Task;
-use Codewithkyrian\Transformers\Tensor\Tensor;
+use App\Service\EmbeddingConfigService;
 use Qdrant\Config;
 use Qdrant\Http\Transport;
 use Qdrant\Models\PointsStruct;
@@ -31,11 +26,12 @@ use Symfony\Component\HttpClient\Psr18Client;
 )]
 final class ProductsVectorizeCommand extends Command
 {
-    private const COLLECTION_NAME = 'products';
-    private const DATA_FILE = __DIR__.'/../../data/products.json';
+    private const string COLLECTION_NAME = 'products';
+    private const string DATA_FILE = __DIR__.'/../../data/products.json';
 
     private Qdrant $qdrantClient;
-    private Pipeline $embedder;
+
+    private EmbeddingConfigService $embeddingService;
 
     protected function configure(): void
     {
@@ -66,7 +62,7 @@ final class ProductsVectorizeCommand extends Command
         $config = new Config('http://localhost', 6333);
         $transport = new Transport(new Psr18Client(), $config);
         $this->qdrantClient = new Qdrant($transport);
-        $this->embedder = pipeline(Task::Embeddings, 'onnx-community/Qwen3-Embedding-0.6B-ONNX');
+        $this->embeddingService = new EmbeddingConfigService();
     }
 
     private function loadProductData(): \Generator
@@ -99,7 +95,8 @@ final class ProductsVectorizeCommand extends Command
         }
 
         $createCollection = new CreateCollection();
-        $createCollection->addVector(new VectorParams(1024, VectorParams::DISTANCE_COSINE), 'default');
+        $vectorSize = $this->embeddingService->getVectorSize();
+        $createCollection->addVector(new VectorParams($vectorSize, VectorParams::DISTANCE_COSINE), 'default');
         $this->qdrantClient->collections(self::COLLECTION_NAME)->create($createCollection);
     }
 
@@ -141,7 +138,7 @@ final class ProductsVectorizeCommand extends Command
             }
 
             $text .= ' '.$product['brand'].' '.$product['category'];
-            $embedding = ($this->embedder)($text, pooling: 'mean', normalize: true);
+            $vector = $this->embeddingService->createEmbedding($text);
 
             $payload = [
                 'name' => $product['name'],
@@ -150,12 +147,6 @@ final class ProductsVectorizeCommand extends Command
                 'price' => $product['price'],
                 'description' => $product['description'],
             ];
-
-            if (is_array($embedding)) {
-                $vector = $embedding[0];
-            } else {
-                $vector = $embedding instanceof Tensor ? $embedding[0] : [];
-            }
 
             $pointsStruct->addPoint(
                 new PointStruct(

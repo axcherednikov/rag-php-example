@@ -5,9 +5,12 @@ declare(strict_types=1);
 namespace App\DTO;
 
 /**
- * DTO для результата RAG поиска.
+ * DTO for RAG search results.
+ *
+ * Provides a clean representation of RAG pipeline results
+ * with original query, optimized query, documents, and AI response.
  */
-readonly class RAGSearchResult
+final readonly class RAGSearchResult
 {
     /**
      * @param array<int, array<string, mixed>> $documents
@@ -20,17 +23,20 @@ readonly class RAGSearchResult
     ) {
     }
 
+    /**
+     * Check if search returned any results.
+     */
     public function hasResults(): bool
     {
         return [] !== $this->documents;
     }
 
-    public function getDocumentCount(): int
+    public function getResultCount(): int
     {
         return count($this->documents);
     }
 
-    public function getTopScore(): ?float
+    public function getTopRelevanceScore(): ?float
     {
         if ([] === $this->documents) {
             return null;
@@ -40,24 +46,21 @@ readonly class RAGSearchResult
     }
 
     /**
-     * @return array<int, float>
+     * Convert to array for API responses.
+     *
+     * @return array<string, mixed>
      */
-    public function getAllScores(): array
+    public function toArray(): array
     {
-        return array_map(
-            fn ($doc) => round(($doc['score'] ?? 0) * 100, 1),
-            $this->documents
-        );
-    }
-
-    /**
-     * @return array<int, array<string, mixed>>
-     */
-    public function getProducts(): array
-    {
-        return array_map(
-            fn ($doc) => $doc['payload'] ?? [],
-            $this->documents
-        );
+        return [
+            'original_query' => $this->originalQuery,
+            'optimized_query' => $this->optimizedQuery,
+            'documents' => $this->documents,
+            'ai_response' => $this->aiResponse,
+            'statistics' => [
+                'result_count' => $this->getResultCount(),
+                'top_relevance_score' => $this->getTopRelevanceScore(),
+            ],
+        ];
     }
 }

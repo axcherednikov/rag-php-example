@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Command;
 
 use App\DTO\RAGSearchResult;
-use App\Service\ImprovedRAGService;
+use App\Service\RAGService;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -15,12 +15,12 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 #[AsCommand(
     name: 'rag:demo',
-    description: 'Демонстрация улучшенной RAG архитектуры с четким разделением этапов'
+    description: 'Демонстрация RAG архитектуры с четким разделением этапов'
 )]
 final class RAGDemoCommand extends Command
 {
     public function __construct(
-        private readonly ImprovedRAGService $ragService,
+        private readonly RAGService $ragService,
     ) {
         parent::__construct();
     }
@@ -111,11 +111,11 @@ final class RAGDemoCommand extends Command
 
         $io->section('Retrieval');
         if ($result->hasResults()) {
-            $io->text("Найдено товаров: {$result->getDocumentCount()}");
+            $io->text("Найдено товаров: {$result->getResultCount()}");
 
             $io->table(
                 ['#', 'Товар', 'Бренд', 'Цена', 'Релевантность'],
-                array_map(function ($doc, $i) {
+                array_map(function (array $doc, int $i): array {
                     $payload = $doc['payload'];
                     $price = number_format($payload['price'] / 100, 0, '.', ' ').' ₽';
                     $relevance = round($doc['score'] * 100, 1).'%';

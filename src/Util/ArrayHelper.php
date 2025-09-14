@@ -23,11 +23,11 @@ final class ArrayHelper
     public static function extractUniqueProperty(array $objects, string $property): array
     {
         $values = array_map(
-            fn ($object) => is_array($object) ? $object[$property] ?? null : $object->$property ?? null,
+            fn (mixed $object): mixed => is_array($object) ? $object[$property] ?? null : $object->$property ?? null,
             $objects
         );
 
-        return array_unique(array_filter($values, fn ($value) => null !== $value));
+        return array_unique(array_filter($values, fn (mixed $value): bool => null !== $value));
     }
 
     /**

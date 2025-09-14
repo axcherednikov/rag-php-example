@@ -54,9 +54,9 @@ services:
     App\Contract\ResponseGeneratorInterface:
         class: App\Service\Generation\LlamaResponseGenerator
 
-    # Main RAG Service - uses refactored implementation
+    # Main RAG Service implementation
     App\Service\RAGServiceInterface:
-        class: App\Service\RefactoredRAGService
+        class: App\Service\RAGService
 
     # LlamaService configuration
     App\Service\LlamaService:
@@ -65,4 +65,4 @@ services:
 
     # HTTP Client for external services
     Symfony\Contracts\HttpClient\HttpClientInterface:
-        class: Symfony\Component\HttpClient\HttpClient
+        factory: ['Symfony\Component\HttpClient\HttpClient', 'create']

@@ -6,12 +6,6 @@ namespace App\Service;
 
 use App\DTO\RAGSearchResult;
 use App\Exception\RAGException;
-use Codewithkyrian\Transformers\Pipelines\Pipeline;
-
-use function Codewithkyrian\Transformers\Pipelines\pipeline;
-
-use Codewithkyrian\Transformers\Pipelines\Task;
-use Codewithkyrian\Transformers\Tensor\Tensor;
 use Qdrant\Config;
 use Qdrant\Http\Transport;
 use Qdrant\Models\Filter\Condition\MatchString;
@@ -21,14 +15,17 @@ use Qdrant\Models\VectorStruct;
 use Qdrant\Qdrant;
 use Symfony\Component\HttpClient\Psr18Client;
 
-class ImprovedRAGService implements RAGServiceInterface
+class RAGService implements RAGServiceInterface
 {
-    private const COLLECTION_NAME = 'products';
-    private const DEFAULT_LIMIT = 5;
-    private const DEFAULT_THRESHOLD = 0.3;
+    private const string COLLECTION_NAME = 'products';
+
+    private const int DEFAULT_LIMIT = 5;
+
+    private const float DEFAULT_THRESHOLD = 0.3;
 
     private ?Qdrant $qdrantClient = null;
-    private ?Pipeline $embedder = null;
+
+    private ?EmbeddingConfigService $embeddingService = null;
 
     public function __construct(
         private readonly LlamaService $llamaService,
@@ -84,12 +81,11 @@ class ImprovedRAGService implements RAGServiceInterface
      */
     private function retrieveDocuments(string $optimizedQuery, ?string $categoryFilter = null): array
     {
-        if (null === $this->embedder) {
+        if (null === $this->embeddingService) {
             throw RAGException::serviceUnavailable('Embedder not initialized');
         }
 
-        $embedding = ($this->embedder)($optimizedQuery, pooling: 'mean', normalize: true);
-        $queryVector = is_array($embedding) ? $embedding[0] : ($embedding instanceof Tensor ? $embedding[0] : []);
+        $queryVector = $this->embeddingService->createEmbedding($optimizedQuery);
 
         $searchVector = new VectorStruct($queryVector, 'default');
         $searchRequest = new SearchRequest($searchVector);
@@ -138,7 +134,7 @@ class ImprovedRAGService implements RAGServiceInterface
 
     private function ensureInitialized(): void
     {
-        if (null !== $this->qdrantClient && null !== $this->embedder) {
+        if (null !== $this->qdrantClient && null !== $this->embeddingService) {
             return;
         }
 
@@ -152,8 +148,8 @@ class ImprovedRAGService implements RAGServiceInterface
             $this->qdrantClient = new Qdrant($transport);
         }
 
-        if (null === $this->embedder) {
-            $this->embedder = pipeline(Task::Embeddings, 'onnx-community/Qwen3-Embedding-0.6B-ONNX');
+        if (null === $this->embeddingService) {
+            $this->embeddingService = new EmbeddingConfigService();
         }
     }
 
@@ -181,7 +177,7 @@ class ImprovedRAGService implements RAGServiceInterface
             $this->qdrantClient?->collections(self::COLLECTION_NAME)->info();
             $health['qdrant'] = true;
 
-            $health['embedder'] = null !== $this->embedder;
+            $health['embedder'] = null !== $this->embeddingService;
         } catch (\Exception) {
         }
 

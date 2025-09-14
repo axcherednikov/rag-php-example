@@ -4,12 +4,7 @@ declare(strict_types=1);
 
 namespace App\Command;
 
-use Codewithkyrian\Transformers\Pipelines\Pipeline;
-
-use function Codewithkyrian\Transformers\Pipelines\pipeline;
-
-use Codewithkyrian\Transformers\Pipelines\Task;
-use Codewithkyrian\Transformers\Tensor\Tensor;
+use App\Service\EmbeddingConfigService;
 use Qdrant\Config;
 use Qdrant\Http\Transport;
 use Qdrant\Models\Request\SearchRequest;
@@ -29,10 +24,11 @@ use Symfony\Component\HttpClient\Psr18Client;
 )]
 final class ProductsSearchCommand extends Command
 {
-    private const COLLECTION_NAME = 'products';
+    private const string COLLECTION_NAME = 'products';
 
     private Qdrant $qdrantClient;
-    private Pipeline $embedder;
+
+    private EmbeddingConfigService $embeddingService;
 
     protected function configure(): void
     {
@@ -66,7 +62,7 @@ final class ProductsSearchCommand extends Command
         $config = new Config('http://localhost', 6333);
         $transport = new Transport(new Psr18Client(), $config);
         $this->qdrantClient = new Qdrant($transport);
-        $this->embedder = pipeline(Task::Embeddings, 'onnx-community/Qwen3-Embedding-0.6B-ONNX');
+        $this->embeddingService = new EmbeddingConfigService();
     }
 
     /**
@@ -74,14 +70,7 @@ final class ProductsSearchCommand extends Command
      */
     private function searchProducts(string $query): array
     {
-        $embedding = ($this->embedder)($query, pooling: 'mean', normalize: true);
-
-        if (is_array($embedding)) {
-            $vector = $embedding[0];
-        } else {
-            $vector = $embedding instanceof Tensor ? $embedding[0] : [];
-        }
-
+        $vector = $this->embeddingService->createEmbedding($query);
         $searchVector = new VectorStruct($vector, 'default');
         $searchRequest = new SearchRequest($searchVector);
         $searchRequest->setLimit(5)->setWithPayload(true)->setScoreThreshold(0.5);

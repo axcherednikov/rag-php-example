@@ -13,7 +13,7 @@ use App\Contract\LoggerInterface;
  */
 final readonly class FileLogger implements LoggerInterface
 {
-    private const LOG_FORMAT = '[%s] %s: %s %s'.PHP_EOL;
+    private const string LOG_FORMAT = '[%s] %s: %s %s'.PHP_EOL;
 
     public function __construct(
         private string $logDirectory = 'var/log',

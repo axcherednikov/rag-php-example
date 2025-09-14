@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Command;
 
-use App\Service\ImprovedRAGService;
+use App\Service\RAGService;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -17,10 +17,10 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 )]
 final class ProductsChatCommand extends Command
 {
-    private const SESSION_ID = 'chat_session';
+    private const string SESSION_ID = 'chat_session';
 
     public function __construct(
-        private readonly ImprovedRAGService $ragService,
+        private readonly RAGService $ragService,
     ) {
         parent::__construct();
     }
@@ -82,7 +82,6 @@ final class ProductsChatCommand extends Command
     {
         $io->section('Рекомендации');
 
-        // Очищаем markdown и форматируем для консоли
         $cleanResponse = strip_tags(str_replace(['**', '*', '#', '`'], '', $aiResponse));
         $io->text($cleanResponse);
 

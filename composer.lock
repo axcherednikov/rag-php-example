@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f1d83daff10838ab8b33a8c8b013b9ea",
+    "content-hash": "98c39184e7a132d12ab0125d180dabfb",
     "packages": [
         {
             "name": "codewithkyrian/jinja-php",

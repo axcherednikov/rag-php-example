@@ -7,6 +7,7 @@ namespace App\Service\Embedding;
 use App\Contract\EmbeddingServiceInterface;
 use App\Exception\RAGException;
 use App\Util\EnvironmentSetup;
+use Codewithkyrian\Transformers\Exceptions\UnsupportedTaskException;
 use Codewithkyrian\Transformers\Pipelines\Pipeline;
 
 use function Codewithkyrian\Transformers\Pipelines\pipeline;
@@ -21,8 +22,9 @@ use Codewithkyrian\Transformers\Pipelines\Task;
  */
 final class TransformersEmbeddingService implements EmbeddingServiceInterface
 {
-    private const DEFAULT_MODEL = 'onnx-community/Qwen3-Embedding-0.6B-ONNX';
-    private const VECTOR_DIMENSIONS = 1024;
+    private const string DEFAULT_MODEL = 'onnx-community/Qwen3-Embedding-0.6B-ONNX';
+
+    private ?int $cachedVectorSize = null;
 
     private ?Pipeline $embedder = null;
 
@@ -57,7 +59,11 @@ final class TransformersEmbeddingService implements EmbeddingServiceInterface
 
     public function getDimensions(): int
     {
-        return self::VECTOR_DIMENSIONS;
+        if (null === $this->cachedVectorSize) {
+            $this->cachedVectorSize = $this->detectVectorSize();
+        }
+
+        return $this->cachedVectorSize;
     }
 
     public function getModelName(): string
@@ -92,8 +98,15 @@ final class TransformersEmbeddingService implements EmbeddingServiceInterface
 
         try {
             $this->embedder = pipeline(Task::Embeddings, $this->modelName);
-        } catch (\Exception $e) {
-            throw RAGException::serviceUnavailable('Failed to initialize embedding model: '.$e->getMessage(), $e);
+        } catch (UnsupportedTaskException $e) {
+            throw RAGException::serviceUnavailable(sprintf('Embedding model "%s" is not supported: %s', $this->modelName, $e->getMessage()), $e);
         }
+    }
+
+    private function detectVectorSize(): int
+    {
+        $testEmbedding = $this->embed('test');
+
+        return count($testEmbedding);
     }
 }

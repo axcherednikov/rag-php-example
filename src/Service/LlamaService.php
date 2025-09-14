@@ -8,8 +8,9 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class LlamaService
 {
-    private const OLLAMA_URL = 'http://localhost:11434';
-    private const DEFAULT_MODEL = 'llama3.2:1b';
+    private const string OLLAMA_URL = 'http://localhost:11434';
+
+    private const string DEFAULT_MODEL = 'llama3.2:1b';
 
     public function __construct(
         private readonly HttpClientInterface $httpClient,
@@ -92,7 +93,7 @@ You are a smart search query analyzer for computer products. Your task:
 
 {$contextInfo}Examples:
 процессор AMD для игр → AMD gaming processor
-видеокарта RTX дешевая → RTX budget graphics card  
+видеокарта RTX дешевая → RTX budget graphics card
 игровая видеокарта → gaming graphics card
 MacBook для работы → MacBook laptop
 материнская плата → motherboard
@@ -155,7 +156,7 @@ PROMPT;
         }
 
         return <<<PROMPT
-Ты эксперт-консультант в магазине компьютерной техники. 
+Ты эксперт-консультант в магазине компьютерной техники.
 
 ЗАПРОС ПОЛЬЗОВАТЕЛЯ: "$originalQuery"
 
@@ -226,7 +227,7 @@ PROMPT;
             $response = $this->httpClient->request('GET', self::OLLAMA_URL.'/api/tags');
             $data = $response->toArray();
 
-            return array_map(fn ($model) => $model['name'] ?? '', $data['models'] ?? []);
+            return array_map(fn (array $model): string => $model['name'] ?? '', $data['models'] ?? []);
         } catch (\Exception) {
             return [];
         }

@@ -24,9 +24,11 @@ use Symfony\Component\HttpClient\Psr18Client;
  */
 final class QdrantDocumentRetriever implements DocumentRetrieverInterface
 {
-    private const COLLECTION_NAME = 'products';
-    private const DEFAULT_HOST = 'http://localhost';
-    private const DEFAULT_PORT = 6333;
+    private const string COLLECTION_NAME = 'products';
+
+    private const string DEFAULT_HOST = 'http://localhost';
+
+    private const int DEFAULT_PORT = 6333;
 
     private ?Qdrant $qdrantClient = null;
 

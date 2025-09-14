@@ -16,7 +16,7 @@ use App\Service\LlamaService;
  */
 final readonly class LlamaResponseGenerator implements ResponseGeneratorInterface
 {
-    private const DEFAULT_EMPTY_RESPONSE = 'К сожалению, не найдено товаров соответствующих вашему запросу. Попробуйте изменить формулировку.';
+    private const string DEFAULT_EMPTY_RESPONSE = 'К сожалению, не найдено товаров соответствующих вашему запросу. Попробуйте изменить формулировку.';
 
     public function __construct(
         private LlamaService $llamaService,

@@ -44,7 +44,7 @@
 ### Что нужно установить
 
 - Docker и Docker Compose
-- PHP 8.2+ с Composer
+- PHP 8.3+ с Composer
 - Make (опционально, для удобных команд)
 
 ### Запуск в одну команду
